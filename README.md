@@ -1,24 +1,30 @@
-# README
+###### 私がDMMWEBCAMPを受講しているときに作った作品です。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト名
+### <デブ麺ポータル>
 
-Things you may want to cover:
+## サイト概要
+### サイトテーマ
+<食べたら太りそうな全国のラーメンを紹介するサイトです。チェーン・個人問いません。>
 
-* Ruby version
+### テーマを選んだ理由
+<ラーメンを食べたいときに限って見つかるのはあっさりラーメン。あっさりも美味しいですが、やはり食べたくなるのは食べたら太りそうなギトギトラーメン。そういう同志は意外といるのではないでしょうか。そのためギトギトなラーメンの情報を集まるサイトを作りたいと思いました。しかし、ただ紹介するだけでは面白くないので、投稿数、獲得いいね数でランキング、レベルが上がるようにしました>
 
-* System dependencies
+### ターゲットユーザ
+<油っぽいラーメンが好きな人>
 
-* Configuration
+### 主な利用シーン
+<油っぽいラーメンを食べたいとき>
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+-随時追加していきます。
