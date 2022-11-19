@@ -40,4 +40,4 @@
 - IDE：Cloud9
 
 ## 使用素材
--随時追加していきます。
+- Google Maps JavaScript API
