@@ -44,6 +44,7 @@ group :development do
   gem 'spring'
   gem 'kaminari','~> 1.2.1'
   gem 'pry-byebug'
+  gem 'devise'
 end
 
 group :test do
