@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :edit, :update]
     resources :reviews, only: [:index, :show, :edit, :update]
-    resources :tags, only: [:index, :new, :edit, :update]
+    resources :tags, only: [:index, :new, :create, :edit, :update]
     resources :tag_posts, only: [:update]
   end
 
