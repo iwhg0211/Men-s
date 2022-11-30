@@ -6,6 +6,9 @@ class Admin::PostsController < ApplicationController
   def show
   end
   
+  def edit
+  end
+  
   private
   
   def post_params
