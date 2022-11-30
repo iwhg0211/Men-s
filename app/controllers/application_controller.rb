@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
           root_path
       end
   end
-  
+
   def after_sign_up_path_for
     # 新規登録した後に遷移する場所を指定する
     users_mypage_path
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
           root_path
           # トップページに遷移する
       elsif resource_or_scope == :admin
-        # admin(管理者)がログアウトした後に遷移する場所を指定する 
+        # admin(管理者)がログアウトした後に遷移する場所を指定する
           new_admin_session_path
           # adminのログインページに遷移する
       end

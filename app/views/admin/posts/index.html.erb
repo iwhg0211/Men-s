@@ -1,1 +1,26 @@
-<h3></h3>
+<h3>投稿一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>投稿id</th>
+      <th>ユーザー名</th>
+      <th>店名</th>
+      <th>店の説明</th>
+      <th>公開・非公開</th>
+    </tr>
+  </thead>
+  <% @posts.each do |post| %>
+  <tbody>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.user.last_name %><%= @post.user.first_name %></td>
+      <td><%= post.shop_name %></td>
+      <td><%= post.shop_explanation %></td>
+      <td><%= post.is_deleted %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<%= paginate @posts %>
