@@ -13,7 +13,7 @@
   <% @posts.each do |post| %>
   <tbody>
     <tr>
-      <td><%= post.id %></td>
+      <td><%= link_to post.id, admin_post_path(post.id) %></td>
       <td><%= post.user.last_name %><%= @post.user.first_name %></td>
       <td><%= post.shop_name %></td>
       <td><%= post.shop_explanation %></td>
@@ -22,5 +22,6 @@
   </tbody>
   <% end %>
 </table>
+
 
 <%= paginate @posts %>

@@ -14,6 +14,7 @@
     <headers>
       <div class="ul">
         <% if admin_signed_in? %>
+        <%#もしadmin(管理者)がログインしていたら%> 
           <li>
             <%= link_to '会員一覧', admin_users_path %>
           </li>
@@ -30,6 +31,7 @@
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
           </li>
         <% elsif user_signed_in? %>
+        <%#もしuser(ユーザー)がログインしていたら%>
           <li>
             <%= link_to 'マイページ', users_mypage_path %>
           </li>
@@ -46,6 +48,7 @@
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
+        <%#もしそれ以外なら(今回はログインしていなかったら)%>
           <li>
             <%= link_to 'About', about_path %>
           </li>
