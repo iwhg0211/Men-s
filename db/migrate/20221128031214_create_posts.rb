@@ -7,7 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :address
       t.integer :latitude
       t.integer :longitude
-      t.boolean :is_deleted, null: false, default: ""
+      t.boolean :is_deleted, null: false, default: "false"
 
       t.timestamps
     end
