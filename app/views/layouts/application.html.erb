@@ -11,6 +11,23 @@
   </head>
 
   <body>
+    <headers>
+      <div class="ul">
+        <li>
+          <%= link_to '会員一覧', admin_users_path %>
+        </li>
+        <li>
+          <%= link_to '投稿一覧', admin_posts_path %>
+        </li>
+        <li>
+          <%= link_to 'タグ一覧', admin_tags_path %>
+        </li>
+        <li>
+          <%= link_to 'タグ一覧', admin_tags_path %>
+        </li>
+      </div>
+    </headers>
     <%= yield %>
+    <footer>麺s</footer>
   </body>
 </html>
