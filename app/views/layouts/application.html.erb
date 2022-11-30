@@ -13,18 +13,55 @@
   <body>
     <headers>
       <div class="ul">
-        <li>
-          <%= link_to '会員一覧', admin_users_path %>
-        </li>
-        <li>
-          <%= link_to '投稿一覧', admin_posts_path %>
-        </li>
-        <li>
-          <%= link_to 'タグ一覧', admin_tags_path %>
-        </li>
-        <li>
-          <%= link_to 'タグ一覧', admin_tags_path %>
-        </li>
+        <% if admin_signed_in? %>
+          <li>
+            <%= link_to '会員一覧', admin_users_path %>
+          </li>
+          <li>
+            <%= link_to '投稿一覧', admin_posts_path %>
+          </li>
+          <li>
+            <%= link_to 'タグ一覧', admin_tags_path %>
+          </li>
+          <li>
+            <%= link_to 'ランキング', admin_posts_ranking_path %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+          </li>
+        <% elsif user_signed_in? %>
+          <li>
+            <%= link_to 'マイページ', users_mypage_path %>
+          </li>
+          <li>
+            <%= link_to '投稿一覧', posts_path %>
+          </li>
+          <li>
+            <%= link_to '新規投稿', new_post_path %>
+          </li>
+          <li>
+            <%= link_to 'ランキング', posts_ranking_path %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'About', about_path %>
+          </li>
+          <li>
+            <%= link_to '投稿一覧', posts_path %>
+          </li>
+          <li>
+            <%= link_to 'ランキング', posts_ranking_path %>
+          </li>
+          <li>
+            <%= link_to '新規登録', new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to 'ログイン', new_user_session_path %>
+          </li>
+        <% end %>
       </div>
     </headers>
     <%= yield %>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index, :show, :edit, :update]
     resources :tags, only: [:index, :new, :create, :edit, :update]
     resources :tag_posts, only: [:update]
-    get 'posts/ranking' => 'posts#ranking', as: ''
+    get 'posts/ranking' => 'posts#ranking'
   end
 
   scope module: :user do
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :users
     resources :posts
     resources :reviews
+    get 'users/mypage' => 'users#mypage'
+    get 'posts/ranking' => 'posts#ranking'
   end
 
 end

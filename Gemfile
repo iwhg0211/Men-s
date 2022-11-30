@@ -45,6 +45,7 @@ group :development do
   gem 'kaminari','~> 1.2.1'
   gem 'pry-byebug'
   gem 'devise'
+  gem 'net-smtp'
 end
 
 group :test do
