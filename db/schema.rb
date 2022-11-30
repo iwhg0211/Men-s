@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_11_30_112503) do
     t.string "address"
     t.integer "latitude"
     t.integer "longitude"
-    t.boolean "is_deleted", default: false, null: false
+    t.boolean "is_release", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"

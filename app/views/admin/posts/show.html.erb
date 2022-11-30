@@ -18,7 +18,9 @@
       <td><%= @post.shop_explanation %></td>
       <td><%= @post.user.last_name %><%= @post.user.first_name %></td>
       <td><%= @post.is_deleted %></td>
-      <td><%= form_with model: @post, url:  %></td>
+      <td><%= form_with model: @post, url: admin_post_path do |f| %>
+          <%= f.radio_button :is_deleted, :true  %>
+          <%= f.label :is_deleted, "公開" ></td>
     </tr>
   </tbody>
 </table>
