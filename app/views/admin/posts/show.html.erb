@@ -1,2 +1,32 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<h3><%= @user.last_name %><%= @user.first_name %>の投稿情報詳細</h3>
+
+<%= image_tag post.post_image %>
+
+<table>
+  <thead>
+    <tr>
+      <th>店名</th>
+      <th>店の説明</th>
+      <th>投稿ユーザー名</th>
+      <th>公開設定</th>
+      <th>公開・非公開設定</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @post.shop_name %></td>
+      <td><%= @post.shop_explanation %></td>
+      <td><%= @post.user.last_name %><%= @post.user.first_name %></td>
+      <td><%= @post.is_deleted %></td>
+      <td><%= form_with model: @post, url: admin_post_path do |f| %>
+          <%= f.radio_button :is_released, :true  %>
+          <%= f.label :is_released, "公開" %><br />
+          <%= f.radio_button :is_released, :false  %>
+          <%= f.label :is_released, "非公開" %><br />
+          <%= f.submit '変更' %>
+          <% end %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'このユーザーのレビュー一覧', admin_reviews_path %>
