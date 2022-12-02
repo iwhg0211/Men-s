@@ -10,9 +10,4 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     get admin_users_show_url
     assert_response :success
   end
-
-  test "should get edit" do
-    get admin_users_edit_url
-    assert_response :success
-  end
 end

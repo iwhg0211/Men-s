@@ -2,12 +2,9 @@ class User::ReviewsController < ApplicationController
   def index
   end
 
-  def edit
-  end
-
   def show
   end
 
-  def new
+  def edit
   end
 end

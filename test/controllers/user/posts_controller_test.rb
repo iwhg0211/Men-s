@@ -6,8 +6,8 @@ class User::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get user_posts_new_url
+  test "should get show" do
+    get user_posts_show_url
     assert_response :success
   end
 
