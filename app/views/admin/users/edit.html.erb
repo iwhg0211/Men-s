@@ -1,2 +1,42 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h3><%= @user.last_name %><%= @user.first_name %>の情報編集</h3>
+
+<% if user.user_image attached? %>
+<%# もし user.use_image がつけられていたら？ %>
+<%= image_tag user.user_image, size: "50×50" %>
+<%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
+<% else %>
+<%# そうでなければ %>
+<%= image_tag 'men_image.jpeg', size: "50×50" %>
+<%# app/assets/image下にあるmen_image.jpegを表示 %>
+<% end %>
+
+<p>メールアドレス</p>
+<%= @user.email %>
+
+<p>氏名</p>
+<%= @user.last_name %><%= @user.first_name %>
+
+<p>氏名(フリガナ)</p>
+<%= @user.last_name_kana %><%= @user.first_name_kana %>
+
+<p>ユーザー名</p>
+<%= @user.user_name %>
+
+<p>ランキング</p>
+<%#ここは後回し 12/3時点%>
+
+<p>登録変更</p>
+<%= form_with model: @user, url: admin_user do |f| %>
+
+<%= f.radio_button :is_deleted, false %>
+<%# radio_buttonで選択のボタン作成、:is_deletedはboolean型のカラム、 falseは真偽値農地の１つ %>
+<%= f.label :is_deleted, '有効' %>
+<%# labelで選択肢の言葉を変更する、ここを記述しなければ選択肢がfalse(true)のまま %>
+
+<%= f.radio_button :is_deleted, true %>
+<%= f.label :is_deleted, '退会' %>
+
+<%= f.submit '保存' %>
+<%# submitの記述でDBへデータを送信、ここをlink_toで記述しないように注意 %>
+
+<% end %>

@@ -25,18 +25,9 @@
 <p>ランキング</p>
 <%#ここは後回し 12/3時点%>
 
-<p>登録変更</p>
-<%= form_with model: @user, url: admin_user do |f| %>
+<p>登録確認</p>
+<%= @user.is_deleted %>
 
-<%= f.radio_button :is_deleted, false %>
-<%# radio_buttonで選択のボタン作成、:is_deletedはboolean型のカラム、 falseは真偽値農地の１つ %>
-<%= f.label :is_deleted, '有効' %>
-<%# labelで選択肢の言葉を変更する、ここを記述しなければ選択肢がfalse(true)のまま %>
+<%= link_to '編集', edit_admin_user_path(@user.id) %>
 
-<%= f.radio_button :is_deleted, true %>
-<%= f.label :is_deleted, '退会' %>
-
-<%= f.submit '保存' %>
-<%# submitの記述でDBへデータを送信、ここをlink_toで記述しないように注意 %>
-
-<% end %>
+<%= link_to 'このユーザーのレビュー', admin_reviews_path %>

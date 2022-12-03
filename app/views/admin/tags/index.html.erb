@@ -1,2 +1,28 @@
-<h1>Admin::Tags#index</h1>
-<p>Find me in app/views/admin/tags/index.html.erb</p>
+<h3>タグ一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+    <tr>
+      <td><%= tag.tag_name %></td>
+      <td><%= link_to '編集', edit_admin_tag_path %><br />
+          <%= link_to '削除', admin_tag_path, method: :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>タグ作成</p>
+<%= form_with model: @tag, url: admin_tags do |f| %>
+
+<%= f.string_field :tag_name %>
+
+<%= f.submit '新規作成' %>
+
+<%  %>
