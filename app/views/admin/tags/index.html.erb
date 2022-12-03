@@ -19,10 +19,10 @@
 </table>
 
 <p>タグ作成</p>
-<%= form_with model: @tag, url: admin_tags do |f| %>
+<%= form_with model: @tag, url: admin_tags_path do |f| %>
 
-<%= f.string_field :tag_name %>
+<%= f.text_field :tag_name %>
 
 <%= f.submit '新規作成' %>
 
-<%  %>
+<% end %>
