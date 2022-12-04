@@ -46,6 +46,7 @@ group :development do
   gem 'pry-byebug'
   gem 'devise'
   gem 'net-smtp'
+  gem 'impressionist'
 end
 
 group :test do
