@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2022_12_02_010238) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "user_name", null: false
-    t.text "self_introduction", null: false
+    t.text "self_introduction"
     t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
