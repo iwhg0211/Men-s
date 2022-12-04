@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2022_12_02_010238) do
     t.integer "post_id", null: false
     t.string "review_title", null: false
     t.text "shop_review", null: false
+    t.boolean "is_released", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_reviews_on_post_id"

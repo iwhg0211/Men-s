@@ -1,2 +1,26 @@
-<h1>Admin::Reviews#show</h1>
-<p>Find me in app/views/admin/reviews/show.html.erb</p>
+<h3><%= @review.id %>の投稿情報詳細</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>店名</th>
+      <th>タイトル</th>
+      <th>説明</th>
+      <th>公開・非公開設定</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @review.post.shop_name %></td>
+      <td><%= @review.review_title %></td>
+      <td><%= @review.shop_review %></td>
+      <td><%= form_with model: @review, url: admin_review_path do |f| %>
+          <%= f.radio_button :is_released, :true  %>
+          <%= f.label :is_released, "公開" %><br />
+          <%= f.radio_button :is_released, :false  %>
+          <%= f.label :is_released, "非公開" %><br />
+          <%= f.submit '変更' %>
+          <% end %></td>
+    </tr>
+  </tbody>
+</table>

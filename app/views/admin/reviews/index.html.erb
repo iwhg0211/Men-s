@@ -1,2 +1,26 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<h3><%= @user.last_name %><%= @user.first_name %>のレビューページ</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>作成日</th>
+      <th>店名</th>
+      <th>タイトル</th>
+      <th>公開・非公開</th>
+    </tr>
+  </thead>
+  <% @reviews.each do |review| %>
+  <tbody>
+    <tr>
+      <td><%= link_to review.id, admin_review_path(review.id) %></td>
+      <td><%= review.created_at %></td>
+      <td><%= review.post.shop_name %></td>
+      <td><%= review.review_title %></td>
+      <td><%= review.is_released %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+
+<%= paginate @reviews %>
