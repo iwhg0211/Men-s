@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Debumensportal</title>
+    <title>Mens</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,7 @@
     <headers>
       <div class="ul">
         <% if admin_signed_in? %>
-        <%#もしadmin(管理者)がログインしていたら%> 
+        <%#もしadmin(管理者)がログインしていたら%>
           <li>
             <%= link_to '会員一覧', admin_users_path %>
           </li>
