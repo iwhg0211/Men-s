@@ -6,6 +6,8 @@
 
 どんなラーメンでも大歓迎！</p>
 
+<%= link_to '仮ユーザー一覧', users_path %>
+
 <h3>閲覧数ランキング一覧</h3>
 
 <table>
@@ -20,7 +22,7 @@
     <%  %>
     <tr>
       <td></td>
-      <td>review.post.user.user_name</td>
+      <td><%#= @review.post.user.user_name %></td>
       <td></td>
     </tr>
   </tbody>

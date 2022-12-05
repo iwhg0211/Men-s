@@ -1,2 +1,25 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<%= @user.user_name %><p>の情報詳細</p>
+
+<% if @user.user_image.attached? %>
+  <%= image_tag @user.user_image, size: "50x50" %>
+<% else %>
+  <%= image_tag 'men_image', size: "50x50" %>
+<% end %>
+  
+<p>ユーザー名</p>
+<%= @user.user_name %>
+
+<p>自己紹介</p>
+<%= @user.self_introduction %>
+
+<% if current_user.id == @user.id %>
+<%# ここ、ログイン中のユーザーだと編集ボタンが出るように、それ以外は編集ボタンが出ないようにした！ %> 
+ <%= link_to '編集', edit_user_path(@user.id) %>
+<% else %>
+<% end %>
+
+<%#= link_to @user.user_name'の投稿一覧',  %>
+<%# ここ１人ユーザーの投稿一覧を表示したい %>
+
+<%#= link_to @user.user_name'の投稿一覧',  %>
+<%# ここ１人ユーザーのレビュー一覧を表示したい %>

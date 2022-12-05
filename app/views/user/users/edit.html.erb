@@ -1,2 +1,22 @@
-<h1>User::Users#edit</h1>
-<p>Find me in app/views/user/users/edit.html.erb</p>
+<%= @user.user_name %><p>の情報編集</p>
+
+<%= form_with model: @user, url: user_path(@user.id) do |f| %>
+
+<p>ユーザー名</p>
+<%= f.text_field :user_name %>
+
+<p>自己紹介</p>
+<%= f.text_area :self_introduction %>
+
+<p>ユーザー画像</p>
+<%= f.file_field :user_image %>
+
+<%= f.submit '変更を保存' %>
+
+<% end %>
+
+<%= link_to '退会する', user_path(@user.id), method: :patch, date: { confirm: "本当に退会しますか？" } %>
+
+<%#= link_to '退会', user_path(@user.id), method: :patch, date: { confirm: "本当に退会しますか？" } %>
+
+<%#= link_to 'レビュー一覧へ' %>

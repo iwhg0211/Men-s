@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   has_many :tag_posts,dependent: :destroy
   has_many :tags,through: :post_tags
 
+  is_impressionable counter_cache: true
+
 end
