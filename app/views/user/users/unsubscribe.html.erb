@@ -1,0 +1,6 @@
+<p>退会すると、これまでの投稿とレビューを<br />
+見ることができなくなります。</p>
+
+<%= link_to '退会する', users_withdraw, method: :patch, date: { confirm: "本当に退会しますか？" } %>
+
+<%= link_to '退会しない', user_path(@user.id) %>

@@ -26,9 +26,9 @@ Rails.application.routes.draw do
     resources :reviews
     get 'users/mypage' => 'users#mypage'
     get 'posts/ranking' => 'posts#ranking'
-    get 'users/unsubscribe' => 'users#unsubscribe'
-    patch 'users/withdraw' => 'users#withdraw'
-        
+    get 'users/:id/unsubscribe' => 'users#unsubscribe'
+    patch 'users/:id/withdraw' => 'users#withdraw'
+
   end
 
 end

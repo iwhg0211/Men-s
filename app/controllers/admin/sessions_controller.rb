@@ -18,10 +18,23 @@ class Admin::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  def reject_user
+    # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
+    @user = User.find_by(name: params[:user][:name])
+    if @user
+      if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
+        redirect_to new_user_registration_path
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    end
+  end
+  
 end
