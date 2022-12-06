@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
  def active_for_authentication?
    super && (is_deleted == false)
+   # ここのsuperと && の意味をまだよくわかっていません
  end
  
 end

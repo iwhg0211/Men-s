@@ -1,2 +1,18 @@
-<h1>User::Posts#new</h1>
-<p>Find me in app/views/user/posts/new.html.erb</p>
+<h3>新規投稿</h3>
+
+<%= image_tag 'jiro_men', size: '150×150' %>
+
+<%= form_with model: @post, url: posts_path do |f| %>
+
+<p>店の名前</p>
+<%= f.text_field :shop_name %>
+
+<p>店の説明</p>
+<%= f.text_area :shop_explanation %>
+
+<p>店の画像</p>
+<%= f.file_field :post_image %>
+
+<%= f.submit '新規投稿' %>
+
+<% end %>

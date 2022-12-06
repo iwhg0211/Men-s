@@ -18,14 +18,18 @@ class User::UsersController < ApplicationController
   end
   
   def unsubscribe
-    
+    @user = User.find(params[:id])
   end
   
   def withdraw
     @user = User.find(params[:id])
+    # 退会するユーザーのidを見つける
     @user.update(is_deleted :true)
+    # is_deletedをtrue(退会)にupdateする
     reset_session
+　　# セッション情報を全て削除します。
     flash[:notice] = "退会処理を実行しました"
+    # viewにflashメッセージを表示するため
     redirect_to root_path
   end
 
