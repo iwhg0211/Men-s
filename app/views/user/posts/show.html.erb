@@ -20,3 +20,20 @@
 <p>PV数</p>
 <p><%#= @post.impressionist_count %></p>
 <%#.これでPVの数を表示 %>
+
+<table>
+  <thead>
+    <tr>
+      <th>レビューユーザー名</th>
+      <th>レビュー内容</th>
+    </tr>
+  </thead>
+  <% @users.each do |user| %>
+  <tbody>
+    <tr>
+      <td><%= user.user_name %></td>
+      <td><%#= user.posts.review.review_title %></td><%# controllerにpostに紐付いたreviewをeach文で作る %>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

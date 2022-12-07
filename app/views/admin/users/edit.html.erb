@@ -1,8 +1,8 @@
 <h3><%= @user.last_name %><%= @user.first_name %>の情報編集</h3>
 
-<% if user.user_image attached? %>
+<% if @user.user_image.attached? %>
 <%# もし user.use_image がつけられていたら？ %>
-<%= image_tag user.user_image, size: "50×50" %>
+<%= image_tag @user.user_image, size: "50×50" %>
 <%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
 <% else %>
 <%# そうでなければ %>
@@ -26,7 +26,7 @@
 <%#ここは後回し 12/3時点%>
 
 <p>登録変更</p>
-<%= form_with model: @user, url: admin_user do |f| %>
+<%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
 
 <%= f.radio_button :is_deleted, false %>
 <%# radio_buttonで選択のボタン作成、:is_deletedはboolean型のカラム、 falseは真偽値農地の１つ %>

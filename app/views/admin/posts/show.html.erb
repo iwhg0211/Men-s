@@ -1,6 +1,6 @@
 <h3><%= @user.last_name %><%= @user.first_name %>の投稿情報詳細</h3>
 
-<%= image_tag post.post_image %>
+<%= image_tag @post.post_image, size: "100×100" %>
 
 <table>
   <thead>
@@ -16,8 +16,8 @@
     <tr>
       <td><%= @post.shop_name %></td>
       <td><%= @post.shop_explanation %></td>
-      <td><%= @post.user.last_name %><%= @post.user.first_name %></td>
-      <td><%= @post.is_deleted %></td>
+      <td><%= @user.last_name %><%= @user.first_name %></td>
+      <td><%= @post.is_released %></td>
       <td><%= form_with model: @post, url: admin_post_path do |f| %>
           <%= f.radio_button :is_released, :true  %>
           <%= f.label :is_released, "公開" %><br />

@@ -13,9 +13,8 @@
   <% @posts.each do |post| %>
   <tbody>
     <tr>
-      <td><%= link_to post.id, post_path(post.id) %></td>
-      <td><%= post.id %><%#= @users.first_name %></td>
-      <%# ↑ここuser_name持ってきたいが・・・pos%>
+      <td><%= link_to "#{post.id}", post_path(post.id) %></td>
+      <td><%#= post.id %><%= post.user.user_name %></td>
       <td><%= post.shop_name %></td>
       <td><%= post.shop_explanation %></td>
       <td><%= post.is_released %></td>

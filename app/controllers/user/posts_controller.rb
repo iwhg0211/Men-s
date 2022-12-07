@@ -1,6 +1,7 @@
 class User::PostsController < ApplicationController
   def index
     @posts = Post.all.page(params[:page])
+    @users = User.all
   end
 
   def new
@@ -14,9 +15,10 @@ class User::PostsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @users = User.all
     @post = Post.find(params[:id])
-    impressionist(@post, nil, unique: [:ip_address])
+    @user = User.find(@post.user_id)
+    # impressionist_count(@post, nil, unique: [:ip_address])
     # この記述で同じ人の閲覧数はカウントされません！
   end
 

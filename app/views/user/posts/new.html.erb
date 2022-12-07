@@ -13,6 +13,8 @@
 <p>店の画像</p>
 <%= f.file_field :post_image %>
 
+<%= f.hidden_field :user_id, :value => current_user.id %>
+
 <%= f.submit '新規投稿' %>
 
 <% end %>
