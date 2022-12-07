@@ -1,6 +1,10 @@
 <p><%= @user.user_name %>の投稿情報詳細</p>
 
-<%= image_tag @post.post_image, size: '150×150' %>
+<% if @post.post_image.attached? %>
+  <%= image_tag @post.post_image, size: "50x50" %>
+<% else %>
+  <%= image_tag 'men_image', size: "50x50" %>
+<% end %>
 
 <p>店名</p>
 <%= @post.shop_name %>
@@ -8,11 +12,11 @@
 <p>店の説明</p>
 <%= @post.shop_explanation %>
 
-<% if user.id == current.user %>
+<% if @user.id == current_user %>
  <%= link_to '編集', edit_post_path(@post.id) %>
 <% else %>
 <% end %>
 
 <p>PV数</p>
-<p><%= @post.impressions_count %></p>
+<p><%#= @post.impressionist_count %></p>
 <%#.これでPVの数を表示 %>

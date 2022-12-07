@@ -14,10 +14,10 @@
   <tbody>
     <tr>
       <td><%= link_to post.id, admin_post_path(post.id) %></td>
-      <td><%= post.user.last_name %><%= @post.user.first_name %></td>
+      <td><%= post.id %><%#= @users.first_name %></td>
       <td><%= post.shop_name %></td>
       <td><%= post.shop_explanation %></td>
-      <td><%= post.is_deleted %></td>
+      <td><%= post.is_released %></td>
     </tr>
   </tbody>
   <% end %>
