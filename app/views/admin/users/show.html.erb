@@ -23,7 +23,9 @@
 <%= @user.user_name %>
 
 <p>ランキング</p>
-<%#ここは後回し 12/3時点%>
+<% @all_ranks.each do |user| %>
+<%#= user.posts.impressionist_count %>
+<% end %>
 
 <p>登録確認</p>
 <%= @user.is_deleted %>

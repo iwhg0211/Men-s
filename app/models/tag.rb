@@ -1,8 +1,14 @@
 class Tag < ApplicationRecord
 
-  has_many :tag_posts,dependent: :destroy, foreign_key: 'tag_id'#ここのforeign_key: 'tag_id'はどういう記述？
-  has_many :posts,through: :post_tags
+  # tag_mapsと関連付けを行い、tag_mapsのテーブルを通しpostsテーブルと関連づけ
+  #   dependent: :destroyをつけることで、タグが削除された時にタグの関連付けを削除する
+  has_many :tag_posts, dependent: :destroy, foreign_key: 'tag_id'
+
+  # postsのアソシエーション
+  #   Tag.postsとすれば、タグに紐付けられたPostを取得可能になる
+  has_many :posts, through: :tag_posts
 
   validates :name, uniqueness: true, presence: true
+  # ↑はどんな記述
 
 end

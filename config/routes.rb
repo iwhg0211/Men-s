@@ -33,9 +33,11 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users#mypage'
     get 'posts/ranking' => 'posts#ranking'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    # 退会確認ページを表示するためのルーティング
+    # ↑退会確認ページを表示するためのルーティング
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-    # 論理削除するためのルーティング、patchにするのが大事
+    # ↑論理削除するためのルーティング、patchにするのが大事
+    resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :tag_posts
   end
 
 end

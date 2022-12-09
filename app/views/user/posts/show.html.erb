@@ -1,9 +1,9 @@
 <p><%= @user.user_name %>の投稿情報詳細</p>
 
 <% if @post.post_image.attached? %>
-  <%= image_tag @post.post_image, size: "50x50" %>
+  <%= image_tag @post.post_image, size: "100x100" %>
 <% else %>
-  <%= image_tag 'men_image', size: "50x50" %>
+  <%= image_tag 'men_image', size: "100x100" %>
 <% end %>
 
 <p>店名</p>
@@ -18,7 +18,7 @@
 <% end %>
 
 <p>PV数</p>
-<p><%#= @post.impressionist_count %></p>
+<p><%= @post.impressionist_count %></p>
 <%#.これでPVの数を表示 %>
 
 <table>

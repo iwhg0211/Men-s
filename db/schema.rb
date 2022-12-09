@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2022_12_04_120740) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
-    t.string "shop_name", null: false
-    t.text "shop_explanation", null: false
+    t.string "shop_name"
+    t.text "shop_explanation"
     t.string "address"
     t.integer "latitude"
     t.integer "longitude"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2022_12_04_120740) do
     t.string "tag_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

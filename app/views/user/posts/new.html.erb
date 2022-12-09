@@ -14,7 +14,28 @@
 <%= f.file_field :post_image %>
 
 <%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :tag_id, :value => tag.id %>
+
+<%= "スペースを入力することで複数のタグを付けることができます。" %>
+<%= "例：音楽 文芸 スポーツ" %>
+<%= f.text_field :tag_name %>
 
 <%= f.submit '新規投稿' %>
 
 <% end %>
+
+<h3>タグリスト</h3>
+<% @tag_list.each do |post| %>
+  span
+    <%= link_to post.tag_name, tag_posts_path(tag_id: post.id) %>
+    <%= "(#{posts.count})"%>
+<% end %>
+
+
+<%#><h3>投稿する</h3>
+<%= form_with(model: @post_create, url: posts_path, local: true) do |f| %>
+  <%#= "スペースを入力することで複数のタグを付けることができます。" %>
+  <%#= "例：音楽 文芸 スポーツ" %>
+  <%#= f.text_field :tag_name %>
+  <%#= f.submit %>
+<%# end %>
