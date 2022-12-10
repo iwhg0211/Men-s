@@ -1,2 +1,30 @@
-<h1>User::Reviews#new</h1>
-<p>Find me in app/views/user/reviews/new.html.erb</p>
+<h3><%= @user.user_name %>の<%= @post.shop_name %>のレビュー投稿</h3>
+
+<%= form_with model: @review, url: reviews_path %>
+ 
+  <div class="form-group row" id="star">
+    <%= f.label :rate,'星の数 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'preview[rate]',
+    half: true,
+  });
+  </script>  
+
+<p>レビュータイトル</p>
+<%= f.text_field :review_title %>
+
+<p>レビューコメント</p>
+<%= f.text_area :shop_review %>
+
+<%= f.submit 'レビュー投稿' %>
+
+<% end %>

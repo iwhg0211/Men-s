@@ -93,12 +93,15 @@ ActiveRecord::Schema.define(version: 2022_12_04_120740) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "post_id", null: false
+    t.integer "user_id", null: false
     t.string "review_title", null: false
     t.text "shop_review", null: false
+    t.float "rate", null: false
     t.boolean "is_released", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_reviews_on_post_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tag_posts", force: :cascade do |t|
@@ -140,6 +143,7 @@ ActiveRecord::Schema.define(version: 2022_12_04_120740) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "posts", "users"
   add_foreign_key "reviews", "posts"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tag_posts", "posts"
   add_foreign_key "tag_posts", "tags"
 end

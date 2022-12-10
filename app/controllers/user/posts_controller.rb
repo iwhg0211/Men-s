@@ -9,6 +9,7 @@ class User::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tag_lists = Tag.all
   end
 
   #def create
@@ -37,6 +38,7 @@ class User::PostsController < ApplicationController
     @user = User.find(@post.user_id)
     #impressions(@post, nil, unique: [:ip_address])
     # この記述で同じ人の閲覧数はカウントされません！
+    @reviews = Review.all
   end
 
   def edit

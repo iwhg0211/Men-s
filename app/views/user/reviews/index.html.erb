@@ -1,2 +1,21 @@
-<h1>User::Reviews#index</h1>
-<p>Find me in app/views/user/reviews/index.html.erb</p>
+  <%= form_with model: @review, url: reviews_path do |f| %>
+  
+  <!-- 評価 -->
+  <div class="form-group row" id="star">
+    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'preview[rate]',
+    half: true,
+  });
+  </script>  
+  
+  <% end %>

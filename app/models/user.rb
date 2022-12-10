@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
          has_one_attached :user_image
          has_many :posts
+         has_many :reviews
 
  def active_for_authentication?
    super && (is_deleted == false)

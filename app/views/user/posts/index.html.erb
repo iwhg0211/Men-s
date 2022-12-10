@@ -47,18 +47,3 @@
 
 
 <%# 消したい！ %>
-<h3>タグリスト</h3>
-<% @tag_list.each do |list| %>
-  span
-    <%= link_to list.tag_name, tag_posts_path(tag_id: list.id) %>
-    <%= "(#{list.posts.count})"%>
-<% end %>
-　
-　
-<h3>投稿する</h3>
-<%= form_with(model: @post, url: posts_path, local: true) do |f| %>
-<%= "スペースを入力することで複数のタグを付けることができます。" %>
-  <%= "例：音楽 文芸 スポーツ" %>
-  <%= f.text_field :tag_name %>
-  <%= f.submit %>
-<% end %>
