@@ -1,7 +1,7 @@
-<h3><%= @user.user_name %>の<%= @post.shop_name %>のレビュー投稿</h3>
+<h3><%#= @user.user_name %>の<%#= @post.shop_name %>のレビュー投稿</h3>
 
-<%= form_with model: @review, url: reviews_path %>
- 
+<%= form_with model: @review, url: reviews_path do |f| %>
+
   <div class="form-group row" id="star">
     <%= f.label :rate,'星の数 ', class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :rate, id: :review_star %>
@@ -17,7 +17,7 @@
     scoreName: 'preview[rate]',
     half: true,
   });
-  </script>  
+  </script>
 
 <p>レビュータイトル</p>
 <%= f.text_field :review_title %>
