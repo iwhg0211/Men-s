@@ -1,3 +1,9 @@
+<h3><%= @user.user_name %>のレビュー一覧</h3>
+  
+<% @reviews.each do |review| %>
+<%  %>  
+  
+  
   <%= form_with model: @review, url: reviews_path do |f| %>
   
   <!-- 評価 -->

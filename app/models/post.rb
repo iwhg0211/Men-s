@@ -24,6 +24,7 @@ class Post < ApplicationRecord
     
     new_tags.each do |new|
     new_post_tag = Tag.find_or_create_by(tag_name: new)
+    #undefined method `name' for #<Tag id: nil, tag_name: "abura", created_at: nil, updated_at: nil>
     self.tags << new_post_tag
     end
     

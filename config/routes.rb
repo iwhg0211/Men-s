@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :reviews
     get 'users/mypage' => 'users#mypage'
-    get 'posts/ranking' => 'posts#ranking'
+    #get 'posts/ranking' => 'posts#ranking'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     # ↑退会確認ページを表示するためのルーティング
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
