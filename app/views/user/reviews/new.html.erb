@@ -2,22 +2,13 @@
 
 <%= form_with model: @review, url: reviews_path do |f| %>
 
-  <div class="form-group row" id="star">
-    <%= f.label :rate,'星の数 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :rate, id: :review_star %>
-  </div>
+  <!--<div class="form-group row" id="star">-->
+  <!--  <%#= f.label :rate,'星の数 ', class:'col-md-3 col-form-label' %>-->
+  <!--  <%#= f.hidden_field :rate %>-->
 
-  <!-- 評価javascript -->
-  <script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    scoreName: 'preview[rate]',
-    half: true,
-  });
-  </script>
+  <!--</div>-->
+<div id="star"></div>
+<%#星を表示するための記述%>
 
 <p>レビュータイトル</p>
 <%= f.text_field :review_title %>
@@ -28,3 +19,26 @@
 <%= f.submit 'レビュー投稿' %>
 
 <% end %>
+
+  <!-- 評価javascript -->
+  <script>
+    var elem = document.getElementById('star')
+    var opt = {
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'review[rate]',
+      half: true,
+    }
+  // $('#star').raty({
+  //   size     : 36,
+    // starOff:  '<%#= asset_path('star-off.png') %>',
+    // starOn : '<%#= asset_path('star-on.png') %>',
+    // starHalf: '<%#= asset_path('star-half.png') %>',
+    // scoreName: 'preview[rate]',
+    // half: true,
+  // });
+    raty(elem, opt);
+    //application.jsで記述したものを引数として呼び出している
+    //ただ、elm,optとは一体何なのか、ただの引数についた名前ならいいがメソッドの類なら調べる
+  </script>
