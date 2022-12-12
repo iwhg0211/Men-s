@@ -12,56 +12,67 @@
 
   <body>
     <headers>
-      <div class="ul">
-        <% if admin_signed_in? %>
-        <%#もしadmin(管理者)がログインしていたら%>
-          <li>
-            <%= link_to '会員一覧', admin_users_path %>
-          </li>
-          <li>
-            <%= link_to '投稿一覧', admin_posts_path %>
-          </li>
-          <li>
-            <%= link_to 'タグ一覧', admin_tags_path %>
-          </li>
-          <li>
-            <%= link_to 'ランキング', admin_posts_ranking_path %>
-          </li>
-          <li>
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-          </li>
-        <% elsif user_signed_in? %>
-        <%#もしuser(ユーザー)がログインしていたら%>
-          <li>
-            <%= link_to 'マイページ', users_mypage_path %>
-          </li>
-          <li>
-            <%= link_to '投稿一覧', posts_path %>
-          </li>
-          <li>
-            <%= link_to '新規投稿', new_post_path %>
-          </li>
-          <li>
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-          </li>
-        <% else %>
-        <%#もしそれ以外なら(今回はログインしていなかったら)%>
-          <li>
-            <%= link_to 'About', about_path %>
-          </li>
-          <li>
-            <%= link_to '投稿一覧', posts_path %>
-          </li>
-          <li>
-            <%= link_to '新規登録', new_user_registration_path %>
-          </li>
-          <li>
-            <%= link_to 'ログイン', new_user_session_path %>
-          </li>
-        <% end %>
-      </div>
+      <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container">
+          <ul class="navbar nav-expand-lg list-unstyled">
+            <% if admin_signed_in? %>
+            <%#もしadmin(管理者)がログインしていたら%>
+              <li>
+                <%= link_to admin_users_path, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-light">会員一覧</button><% end %>
+              </li>
+              <li>
+                <%= link_to admin_posts_path, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-light">投稿一覧</button><% end %>
+              </li>
+              <li>
+                <%= link_to admin_tags_path, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-light">タグ一覧</button><% end %>
+              </li>
+              <li>
+                <%= link_to admin_posts_ranking_path, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-light">ランキング一覧</button><% end %>
+              </li>
+              <li>
+                <%= link_to destroy_admin_session_path, method: :delete, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-light">ログアウト</button><% end %>
+              </li>
+            <% elsif user_signed_in? %>
+            <%#もしuser(ユーザー)がログインしていたら%>
+              <li>
+                <%= link_to 'マイページ', users_mypage_path %>
+              </li>
+              <li>
+                <%= link_to '投稿一覧', posts_path %>
+              </li>
+              <li>
+                <%= link_to '新規投稿', new_post_path %>
+              </li>
+              <li>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+              </li>
+            <% else %>
+            <%#もしそれ以外なら(今回はログインしていなかったら)%>
+              <li>
+                <%= link_to 'About', about_path %>
+              </li>
+              <li>
+                <%= link_to '投稿一覧', posts_path %>
+              </li>
+              <li>
+                <%= link_to '新規登録', new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'ログイン', new_user_session_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </headers>
+
     <%= yield %>
+
     <footer>麺s</footer>
   </body>
 </html>
