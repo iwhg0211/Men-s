@@ -16,6 +16,9 @@
 <p>レビューコメント</p>
 <%= f.text_area :shop_review %>
 
+<%= f.hidden_field :post_id %>
+<%= f.hidden_field :user_id %>
+
 <%= f.submit 'レビュー投稿' %>
 
 <% end %>
@@ -30,6 +33,7 @@
       scoreName: 'review[rate]',
       half: true,
     }
+    //↑ここの記述の意味を調べる！
   // $('#star').raty({
   //   size     : 36,
     // starOff:  '<%#= asset_path('star-off.png') %>',

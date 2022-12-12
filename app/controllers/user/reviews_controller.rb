@@ -10,7 +10,7 @@ class User::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.save
-    redirect_to posts_path
+    redirect_to root_path
     # 12/10現在、レビューが保存できていない。rails cで確認済み
   end
 
@@ -26,7 +26,7 @@ class User::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:post_id, :ser_id, :review_title, :shop_review, :rate, :is_released)
+    params.require(:review).permit(:post_id, :user_id, :review_title, :shop_review, :rate, :is_released)
   end
 
   def post_params

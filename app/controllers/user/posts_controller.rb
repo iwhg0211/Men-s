@@ -29,7 +29,7 @@ class User::PostsController < ApplicationController
   #end
 
   def show
-    @users = User.all
+    #@users = User.all
     @post = Post.find(params[:id])
     #↑クリックした投稿を取得
     @tag_posts = @post.tags
