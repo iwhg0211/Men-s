@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :user do
+    get 'tags/show'
+    get 'tags/create'
+  end
   devise_for :admins,skip: [:registrations,:passwords], controllers: {
     sessions: "admin/sessions"
     # ログインのURLを設定

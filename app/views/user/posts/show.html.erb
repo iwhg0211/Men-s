@@ -1,4 +1,4 @@
-<p><%= @user.user_name %>の投稿情報詳細</p>
+<h3><%= @user.user_name %>の投稿情報詳細</h3>
 
 <% if @post.post_image.attached? %>
   <%= image_tag @post.post_image, size: "100x100" %>
@@ -21,6 +21,20 @@
 <p><%= @post.impressionist_count %></p>
 <%#.これでPVの数を表示 %>
 
+<h3>タグリスト</h3>
+<% @tag_posts.each do |tag| %>
+    <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+    <%= "(#{tag.posts.count})"%>
+    <%# タグが何件登録されたかの %>
+<% end %>
+
+<%= form_with model: @tag_show, url: tags_path do |f| %>
+  <p>タグ名</p>
+  <%= f.text_field :tag_name %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <%= f.submit '新規投稿' %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -34,6 +48,8 @@
     <tr>
       <td><%= review.user.user_name %></td>
       <td><%= review.review_title %></td><%# controllerにpostに紐付いたreviewをeach文で作る %>
+      <td><%= review.rate %></td>
+      <%# ↑レビューの星を画像表示するために記述したが、文字列が表示される %>
     </tr>
   </tbody>
   <% end %>
@@ -41,4 +57,4 @@
 
 <%= link_to 'レビュー投稿', new_review_path(post_id: @post.id) %>
 <%# postのshowからreviewのnewに遷移するとき「どの投稿からreviewのnewに飛ぶのか」という情報が必要になるので、pathにpostのidを乗せてあげる必要があった %>
-<%#ただ、普通は親と子のルーティングをネストさせてあげるのが一般的なので、これからはそっち使えよ%>
+<%#ただ、普通は親と子のルーティングをネストさせてあげるのが一般的なので、これからはそっち使う %>

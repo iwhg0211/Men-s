@@ -8,7 +8,7 @@
 
   <div class="row justify-content-md-center">
     <div class="col col-lg-auto">
-      
+      <%#ここでformタグでform_withを囲んでいた。formでformを囲んでしまうと動かなくなるので注意！特にbootstrapのサンプルから持ってくるときは注意！%>
         <%= form_with model: @admin, url: admin_session_path do |f| %>
           <div class="field">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレスを入力" %>

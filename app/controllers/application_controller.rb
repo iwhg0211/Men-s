@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+  #before_action :authenticate_user!, except: [:top]  
+
   def after_sign_in_path_for(resource_or_scope)
     # サインインした後に遷移する場所を指定する
       if resource_or_scope.is_a?(Admin)

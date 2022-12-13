@@ -17,8 +17,6 @@ class Admin::PostsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.find(params[:id])
-    impressionist(@post, nil, unique: [:ip_address])
-    # この記述で同じ人の閲覧数はカウントされません！
   end
 
   def edit
