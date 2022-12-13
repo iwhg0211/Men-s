@@ -1,6 +1,6 @@
 <h3><%#= @user.user_name %>の<%#= @post.shop_name %>のレビュー投稿</h3>
 
-<%= form_with model: @review, url: reviews_path do |f| %>
+<%= form_with model: @review, url: reviews_path() do |f| %>
 
   <!--<div class="form-group row" id="star">-->
   <!--  <%#= f.label :rate,'星の数 ', class:'col-md-3 col-form-label' %>-->
@@ -16,8 +16,8 @@
 <p>レビューコメント</p>
 <%= f.text_area :shop_review %>
 
-<%= f.hidden_field :post_id %>
-<%= f.hidden_field :user_id %>
+<%= f.hidden_field :post_id, :value => @post_id %>
+<%= f.hidden_field :user_id, :value => @user_id %>
 
 <%= f.submit 'レビュー投稿' %>
 

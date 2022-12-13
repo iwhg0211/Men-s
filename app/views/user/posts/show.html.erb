@@ -39,4 +39,6 @@
   <% end %>
 </table>
 
-<%= link_to 'レビュー投稿', new_review_path %>
+<%= link_to 'レビュー投稿', new_review_path(post_id: @post.id) %>
+<%# postのshowからreviewのnewに遷移するとき「どの投稿からreviewのnewに飛ぶのか」という情報が必要になるので、pathにpostのidを乗せてあげる必要があった %>
+<%#ただ、普通は親と子のルーティングをネストさせてあげるのが一般的なので、これからはそっち使えよ%>

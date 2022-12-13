@@ -8,7 +8,7 @@ class Tag < ApplicationRecord
   #   Tag.postsとすれば、タグに紐付けられたPostを取得可能になる
   has_many :posts, through: :tag_posts
 
-  validates :name, uniqueness: true, presence: true
+  validates :tag_name, uniqueness: true, presence: true
   # ↑はどんな記述
 
 end

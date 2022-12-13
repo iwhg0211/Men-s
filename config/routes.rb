@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :users
     resources :posts
     resources :reviews
+    
     get 'users/mypage' => 'users#mypage'
     #get 'posts/ranking' => 'posts#ranking'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'

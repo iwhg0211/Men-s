@@ -1,8 +1,10 @@
 class User::PostsController < ApplicationController
   def index
-    @tag_list = Tag.all              #ビューでタグ一覧を表示するために全取得。
+    @tag_list = Tag.all
+    #↑ビューでタグ一覧を表示するために全取得。
     @posts = Post.all.page(params[:page])
-    @post = current_user.posts.new   #ビューのform_withのmodelに使う。
+    @post = current_user.posts.new   
+    #↑ビューのform_withのmodelに使う。
     @users = User.all
     @all_ranks = Post.find(Post.group(:id).order('count(id) desc').limit(3).pluck(:id))
   end

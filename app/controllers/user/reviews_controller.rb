@@ -4,6 +4,10 @@ class User::ReviewsController < ApplicationController
     # bindin.pryしたら=> #<ActionController::Parameters {"controller"=>"user/reviews", "action"=>"new"} permitted: false>
     # idがないので、どうしたら渡せるのか考えないと
     #@post = Post.find(params[:id])
+    @user_id = current_user.id
+    # 誰がレビューするの？=>今ログインしているユーザーなので「current_user」
+    @post_id = params[:post_id]
+    # どの投稿にコメントするの？=>reviewのshowでidを渡した、new_review_path(post_id: @post.id)のidにコメントするで
     @review = Review.new
   end
 
@@ -11,7 +15,8 @@ class User::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.save
     redirect_to root_path
-    # 12/10現在、レビューが保存できていない。rails cで確認済み
+    # 12/10現在、レビューが保存できていない。rails cで確認済み=>12/11解決済み
+    # reviewを、誰が（カレントユーザーが）、どの投稿（もとのpostのshowのidは？）に書くのかということを記述できていなかった
   end
 
   def index

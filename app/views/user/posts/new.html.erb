@@ -24,9 +24,10 @@
 <% end %>
 
 <h3>タグリスト</h3>
-<% @tag_lists.each do |post| %>
-    <%= link_to post.tag_name, tag_posts_path(tag_id: post.id) %>
-    <%= "(#{posts.count})"%>
+<% @tag_lists.each do |tag| %>
+    <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+    <%= "(#{tag.posts.count})"%>
+    <%# タグが何件登録されたかの %>
 <% end %>
 
 
