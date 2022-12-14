@@ -1,5 +1,6 @@
 class User::PostsController < ApplicationController
-  impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
+  impressionist :actions => [:show], :unique => [:session_hash]
+
   def index
     @tag_list = Tag.all
     #↑ビューでタグ一覧を表示するために全取得。
@@ -21,9 +22,12 @@ class User::PostsController < ApplicationController
     #redirect_to post_path(@post.id)
   def create
     @post = current_user.posts.new(post_params)
+    #ここの記述はいまいち説明できない
     @tag_list = params[:post][:tag_name].split(',')
+    #post,tag_nameのparamsから取ったデータを「,」で分けて@tag_listに入れる
     if @post.save
       @post.save_tag(@tag_list)
+      #上の@tag_listで入れたデータをsave_tag(post,rbに記述)に入れる
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
@@ -44,7 +48,7 @@ class User::PostsController < ApplicationController
     #そのクリックした投稿に紐付けられているタグの取得。
     #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@tag_postsにした
     @user = User.find(@post.user_id)
-    #impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]    # この記述で同じ人の閲覧数はカウントされません！
+
     @reviews = Review.all
     @imagepost = Post.find_by(id: params[:id])
     @post_pv = @post.impressions.size

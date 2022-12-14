@@ -32,6 +32,7 @@
   <p>タグ名</p>
   <%= f.text_field :tag_name %>
   <%= f.hidden_field :post_id, :value => @post.id %>
+  <%#↑のhidden_fieldでどの投稿にtagをつけるか、というデータを送る、そのために@post.idを送っている%>
   <%= f.submit '新規投稿' %>
 <% end %>
 
