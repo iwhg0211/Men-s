@@ -4,12 +4,24 @@ class User::PostsController < ApplicationController
   def index
     @tag_list = Tag.all
     #↑ビューでタグ一覧を表示するために全取得。
-    @posts = Post.all.page(params[:page])
+    if params[:tag_name].present?
+      tag = Tag.find_by(tag_name: params[:tag_name])
+      if tag.present?
+       @posts = tag.posts.page(params[:page])
+      else
+       @posts = Post.all.page(params[:page])
+      end
+    else
+     @posts = Post.all.page(params[:page])
+    end
     @post = current_user.posts.new
     #↑ビューのform_withのmodelに使う。
     @users = User.all
-    @all_ranks = Post.find(Post.group(:id).order('count(id) desc').limit(3).pluck(:id))
+    #@all_ranks = Post.find(Post.group(:id).order('count(id) desc').limit(3).pluck(:id))
+    @rank_posts = Post.order(impressions_count: 'DESC') # ソート機能を追加
   end
+
+
 
   def new
     @post = Post.new
@@ -28,29 +40,23 @@ class User::PostsController < ApplicationController
     if @post.save
       @post.save_tag(@tag_list)
       #上の@tag_listで入れたデータをsave_tag(post,rbに記述)に入れる
-      redirect_back(fallback_location: root_path)
+      #redirect_back(fallback_location: root_path)
+      redirect_to post_path(@post.id)
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to post_path(@post.id)
     end
-    #@tag_show = Tag.new(tag_params)
-    #↑showで作った@tag_show = Tag.newにtag_paramsからデータを引っ張ってきて格納
-    #@tag_show.save
-    #↑@tag_showに入ったデータをセーブ（と思っていたらエラー(Routing Error)を吐き出し、全くうまくいきません。正直記述的に曖昧なまま進めているので自信がありません）
-    #redirect_to root_path
   end
-  #end
 
   def show
     #@users = User.all
     @post = Post.find(params[:id])
     #↑クリックした投稿を取得
-    @tag_posts = @post.tags
-    #そのクリックした投稿に紐付けられているタグの取得。
-    #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@tag_postsにした
+    @post_tags = @post.tags
+    #↑そのクリックした投稿に紐付けられているタグの取得。
+    #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@post_tagsにした
     @user = User.find(@post.user_id)
-
     @reviews = Review.all
-    @imagepost = Post.find_by(id: params[:id])
+    #@imagepost = Post.find_by(id: params[:id])
     @post_pv = @post.impressions.size
     #↑PV数を取得
     @tag_show = Tag.new

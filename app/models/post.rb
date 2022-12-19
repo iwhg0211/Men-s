@@ -16,7 +16,6 @@ class Post < ApplicationRecord
     #self.tags.pluck(:tag_name) unless self.tags.nil?
     if self.tags.pluck(:tag_name) == tag_list
       tag_posts_records = TagPost.where(post_id: self.id)
-
       tag_posts_records.destroy_all
     end
 

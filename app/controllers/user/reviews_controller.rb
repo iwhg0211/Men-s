@@ -14,7 +14,8 @@ class User::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.save
-    redirect_to root_path
+    #binding.pry
+    redirect_to post_path(@post.id)
     # 12/10現在、レビューが保存できていない。rails cで確認済み=>12/11解決済み
     # reviewを、誰が（カレントユーザーが）、どの投稿（もとのpostのshowのidは？）に書くのかということを記述できていなかった
   end

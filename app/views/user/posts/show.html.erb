@@ -22,8 +22,8 @@
 <%#.これでPVの数を表示 %>
 
 <h3>タグリスト</h3>
-<% @tag_posts.each do |tag| %>
-    <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+<% @post_tags.each do |tag| %>
+    <%= link_to tag.tag_name, tags_path(id: tag.id) %>
     <%= "(#{tag.posts.count})"%>
     <%# タグが何件登録されたかの %>
 <% end %>

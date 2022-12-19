@@ -1,28 +1,23 @@
 <h3>タグ一覧</h3>
 
-<table>
+<table class='table-bordered'>
   <thead>
     <tr>
-      <th></th>
+      <th>タグid</th>
+      <th>関連投稿名</th>
+      <th>タグ名</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @tags.each do |tag| %>
+    <% @tag_lists.each do |tag| %>
     <tr>
+      <td><%= tag.id %></td>
+      <td><%#= tag.posts.shop_name %></td>
       <td><%= tag.tag_name %></td>
-      <td><%= link_to '編集', edit_admin_tag_path %><br />
-          <%= link_to '削除', admin_tag_path, method: :delete %></td>
+      <td><%= link_to '編集', edit_admin_tag_path(tag.id), class:'btn btn-success' %>
+          <%= link_to '削除', admin_tag_path(tag.id), method: :delete, class:'btn btn-danger' %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
-<p>タグ作成</p>
-<%= form_with model: @tag, url: admin_tags_path do |f| %>
-
-<%= f.text_field :tag_name %>
-
-<%= f.submit '新規作成' %>
-
-<% end %>

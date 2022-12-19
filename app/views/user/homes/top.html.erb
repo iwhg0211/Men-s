@@ -10,20 +10,21 @@
 
 <h3>閲覧数ランキング一覧</h3>
 
-<table>
+<table class='table-bordered'>
   <thead>
     <tr>
       <th>順位</th>
       <th>ユーザー名</th>
-      <th>レビューPV数</th>
+      <th>PV数</th>
     </tr>
   </thead>
   <tbody>
-    <%  %>
+    <% @post_ranks.each.with_index(1) do |post, i| %>
     <tr>
-      <td><%#= %></td>
-      <td><%#= @review.post.user.user_name %></td>
-      <td><%#= @post.impressionist_count %></td>
+      <td>第<%= i %>位</td>
+      <td><%= post.user.user_name %></td>
+      <td><%= post.impressionist_count %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>

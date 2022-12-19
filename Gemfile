@@ -48,6 +48,7 @@ group :development do
   gem 'devise'
   gem 'net-smtp'
   gem 'impressionist'
+  gem 'dotenv-rails'
 end
 
 group :test do

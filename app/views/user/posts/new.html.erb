@@ -1,7 +1,5 @@
 <h3>新規投稿</h3>
 
-<%= image_tag 'jiro_men', size: '150×150' %>
-
 <%= form_with model: @post, url: posts_path do |f| %>
 
 <p>店の名前</p>
@@ -25,7 +23,7 @@
 
 <h3>タグリスト</h3>
 <% @tag_lists.each do |tag| %>
-    <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+    <%= link_to tag.tag_name, tags_path(id: tag.id) %>
     <%= "(#{tag.posts.count})"%>
     <%# タグが何件登録されたかの %>
 <% end %>
@@ -38,3 +36,62 @@
   <%#= f.text_field :tag_name, class %>
   <%#= f.submit %>
 <%# end %>
+
+<h3>googlemap</h3>
+
+<!-- 地名入力用のinputを追加 -->
+<input id="address" type="textbox" value="Sydney, NSW">
+
+<!-- buttonをクリックしたらcodeAddressを実行　-->
+<input type="button" value="Encode" onclick="codeAddress()">
+<div id='map'>
+</div>
+
+<style>
+#map{
+  height: 400px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: -34.397, lng: 150.644},
+  zoom: 8
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>"></script>
