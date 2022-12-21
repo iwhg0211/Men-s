@@ -24,22 +24,29 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :edit, :update]
     resources :reviews, only: [:index, :show, :edit, :update]
     resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
+    get 'tag' => 'tags#tag_index', as: 'tag_index'
     resources :tag_posts, only: [:update]
-    get 'posts/ranking' => 'posts#ranking'
+    get 'ranking' => 'posts#ranking', as: 'ranking'
   end
 
+
+  
   scope module: :user do
     root to: "homes#top"
+    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     get 'about' => 'homes#about', as: 'about'
     resources :users
     resources :posts
     resources :reviews
-    
-    get 'users/mypage' => 'users#mypage'
-    #get 'posts/ranking' => 'posts#ranking'
-    get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+
+    get 'mypage' => 'users#mypage', as: 'mypage'
+    # 12/19にしてたミス→get 'users/mypage' => 'users#mypage', as: 'mypage'と最初にusers/にしていたためマイページに飛ばなかった
+    patch 'mypage' => 'users#mypage', as: 'update_mypage'
+    get 'edit_mypage' => 'users#edit_mypage', as: 'edit_mypage'
+    get 'ranking' => 'posts#ranking', as: 'ranking'
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     # ↑退会確認ページを表示するためのルーティング
-    patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
+    patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     # ↑論理削除するためのルーティング、patchにするのが大事
     resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :tag_posts

@@ -1,0 +1,36 @@
+function mapSearch(){
+    var geocoder = new google.maps.Geocoder(); 
+    var address = $("#store_address").val();
+    
+
+    geocoder.geocode({ address: address }, function(results, status){
+      if (status === 'OK' && results[0]){
+        // マップを作成
+        var map = createMap(results[0].geometry.location)
+  
+        // マーカーを立てる場所の緯度経度を指定
+        var marker = createMarker(results[0].geometry.location, map);
+  
+      }else{ 
+        //住所が存在しない場合の処理
+        alert('住所が正しくないか存在しません。');
+        document.getElementById('store_latitude').value = "";
+        document.getElementById('store_longitude').value = "";
+      }
+    });
+  }
+hajime shimomura から 全員 (21:51)
+function createMap(lat_lng){
+  return new google.maps.Map(document.getElementById("map"), {
+    // マップの中心に表示する場所の緯度経度を指定
+    center: lat_lng,
+    zoom: 18
+  });
+}
+
+function createMarker(lat_lng, map){
+  return new google.maps.Marker({
+    position: lat_lng,
+    map: map,
+  });
+}

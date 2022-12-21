@@ -1,23 +1,25 @@
-<h3>タグ一覧</h3>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark">タグ一覧</h3>
+</div>
 
-<table class='table-bordered'>
-  <thead>
-    <tr>
-      <th>タグid</th>
-      <th>関連投稿名</th>
-      <th>タグ名</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tag_lists.each do |tag| %>
-    <tr>
-      <td><%= tag.id %></td>
-      <td><%#= tag.posts.shop_name %></td>
-      <td><%= tag.tag_name %></td>
-      <td><%= link_to '編集', edit_admin_tag_path(tag.id), class:'btn btn-success' %>
-          <%= link_to '削除', admin_tag_path(tag.id), method: :delete, class:'btn btn-danger' %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row justify-content-center">
+  <table class='table-dark table-bordered table-hover' width="90%" height="20">
+    <thead>
+      <tr>
+        <th>タグid</th>
+        <th>タグ名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tag_lists.each do |tag| %>
+      <tr>
+        <td><%= tag.id %></td>
+        <td><%= tag.tag_name %></td>
+        <td><%= link_to '編集', edit_admin_tag_path(tag.id), class:'btn btn-success' %>
+            <%= link_to '削除', admin_tag_path(tag.id), method: :delete, class:'btn btn-danger' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

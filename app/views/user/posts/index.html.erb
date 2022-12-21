@@ -1,46 +1,29 @@
-<h3>投稿一覧</h3>
+<div class="row justify-content-center">
+  <h3>投稿一覧</h3>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>投稿id</th>
-      <th>ユーザー名</th>
-      <th>店名</th>
-      <th>店の説明</th>
-      <th>公開・非公開</th>
-    </tr>
-  </thead>
-  <% @posts.each do |post| %>
-  <tbody>
-    <tr>
-      <td><%= link_to "#{post.id}", post_path(post.id) %></td>
-      <%## ↑の#{post}の#{}は文字列の中に変数を入れることができるもの %>
-      <td><%= post.user.user_name %></td>
-      <td><%= post.shop_name %></td>
-      <td><%= post.shop_explanation %></td>
-      <td><%= post.is_released %></td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+<div class="row justify-content-center">
+  <table class='table-dark table-bordered table-hover' width="90%" height="300">  
+    <thead>
+      <tr>
+        <th>投稿id</th>
+        <th>ユーザー名</th>
+        <th>店名</th>
+        <th>店の説明</th>
+      </tr>
+    </thead>
+    <% @posts.each do |post| %>
+    <tbody>
+      <tr>
+        <td><%= link_to "#{post.id}", post_path(post.id) %></td>
+        <%## ↑の#{post}の#{}は文字列の中に変数を入れることができるもの %>
+        <td><%= post.user.user_name %></td>
+        <td><%= post.shop_name %></td>
+        <td><%= post.shop_explanation %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
 
 <%= paginate @posts %>
-
-<table>
-  <thead>
-    <tr>
-      <th>順位</th>
-      <th>ユーザー名</th>
-      <th>PV数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @rank_posts.each do |post| %>
-    <tr>
-      <td></td>
-      <td><%= post.user.user_name %></td>
-      <td><%= post.impressionist_count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>

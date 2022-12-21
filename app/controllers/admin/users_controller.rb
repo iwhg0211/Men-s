@@ -6,13 +6,13 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @all_ranks = User.find(Post.group(:id).order('count(id) desc').limit(2).pluck(:id))
+    @all_ranks = User.find(Post.group(:post_id).order('count(id) desc').limit(3).pluck(:id))
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
     @user.update(user_params)

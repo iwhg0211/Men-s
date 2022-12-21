@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  #before_action :authenticate_user!, except: [:top]
+  #before_action :authenticate_user!, except: [:top, :about]
 
   def after_sign_in_path_for(resource_or_scope)
     # サインインした後に遷移する場所を指定する
@@ -12,12 +12,6 @@ class ApplicationController < ActionController::Base
         # それ以外がログインしているなら、userのトップページ遷移する
           root_path
       end
-  end
-
-  def after_sign_up_path_for
-    # 新規登録した後に遷移する場所を指定する
-    users_mypage_path
-    # userのマイページに遷移する
   end
 
   def after_sign_out_path_for(resource_or_scope)

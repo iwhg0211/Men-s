@@ -3,7 +3,9 @@ class User::TagsController < ApplicationController
   def index
     tag = Tag.find(params[:id])
     @posts = tag.posts
-    #ここの記述はタグのidに紐づいた投稿の取得
+    #↑の記述はタグのidに紐づいた投稿の取得
+    @tag = Tag.find(params[:id])
+    #↑の記述はタグ名を表示するため
   end
 
   def create

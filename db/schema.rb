@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2022_12_04_120740) do
     t.string "shop_name"
     t.text "shop_explanation"
     t.string "address"
-    t.integer "latitude"
-    t.integer "longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.boolean "is_released", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

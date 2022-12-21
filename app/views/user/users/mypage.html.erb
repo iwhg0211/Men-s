@@ -1,0 +1,12 @@
+<h3>マイページ</h3>
+
+<p>ユーザー画像</p>
+<%= @user.current_user.user_image %>
+
+<p>ユーザー名</p>
+<%= current_user.user_name %>
+
+<p>自己紹介</p>
+<%= current_user.self_introduction %>
+
+<%= link_to '編集', edit_user_path(@user.id) %>

@@ -1,0 +1,5 @@
+<h3><%= @tag.tag_name %>タグに紐づいた投稿一覧</h3>
+
+<% @tags.each do |tag| %>
+<%= tag.posts.shop_name %>
+<% end %>

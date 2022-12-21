@@ -1,56 +1,81 @@
-<h2>新規登録</h2>
+<div class="container">
 
-<%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "user/shared/error_messages", resource: resource %>
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-auto">
+        <h2>新規登録</h2>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <%= form_with model: @user, url: user_registration_path do |f| %>
+          <%= render "user/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label "パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="row justify-content-md-center">
 
-  <div class="field">
-    <%= f.label "確認用" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <div class="col col-lg-auto">
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス" %>
+          </div>
+          <%#この入力欄だけ上下の空白が大きい%>
 
-    <div class="field">
-    <%= f.label :"性" %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-  </div>
+  　　    <div class="mb-4">
+          <div class="field">
+            <% if @minimum_password_length %>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", :placeholder => "パスワード(6字以上)" %>
+          </div>
+        </div>
 
-    <div class="field">
-    <%= f.label :"名" %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  </div>
+        <div class="mb-4">
+          <div class="field">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "確認用" %>
+          </div>
+        </div>
 
-    <div class="field">
-    <%= f.label :"性(フリガナ)" %><br />
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-  </div>
+        <div class="mb-4">
+          <div class="field">
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", :placeholder => "姓" %>
+          </div>
+        </div>
 
-    <div class="field">
-    <%= f.label :"名(フリガナ" %><br />
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-  </div>
+        <div class="mb-4">
+          <div class="field">
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", :placeholder => "名" %>
+          </div>
+        </div>
 
-    <div class="field">
-    <%= f.label :"ユーザーネーム" %><br />
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
-  </div>
+        <div class="mb-4">
+          <div class="field">
+            <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", :placeholder => "姓(フリガナ)" %>
+          </div>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
+        <div class="mb-4">
+          <div class="field">
+            <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", :placeholder => "名(フリガナ)" %>
+          </div>
+        </div>
 
-<p>登録済みの人は</p><%= link_to 'ここから', new_user_session_path %><p>ログイン</p>
+        <div class="mb-4">
+          <div class="field">
+            <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", :placeholder => "ユーザー名" %>
+          </div>
+        </div>
 
-<%= render "user/shared/links" %>
+        <div class="mb-4">
+          <div class="actions">
+            <%= f.submit "新規登録" %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+      <% end %>
+
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-auto">
+        <p>登録済みの人は<%= link_to 'ここから', new_user_session_path %>ログイン</p>
+      </div>
+    </div>
+
+</div>

@@ -1,7 +1,11 @@
-<h3>タグ編集</h3>
+<div class="row justify-content-center">
+  <div class="col col-auto">
+  
+    <h3 class="p-3 mb-2 bg-warning text-dark">タグ編集</h3>
+    <%= form_with model: @tag_lists, url: admin_tag_path(@tag_lists.id) do |f| %>
+      <%= f.text_field :tag_name %>
+      <%= f.submit '変更を保存', class:'btn btn-primary'%>
+    <% end %>
 
-<%= form_with model: @tag_show, url: admin_tag_path(tag.id) do |f| %>
-  <p>タグ名</p>
-  <%= f.text_field :tag_name %>
-  <%= f.submit '変更を保存' %>
-<% end %>
+  </div>
+</div>

@@ -1,23 +1,21 @@
 <div class="container">
       
-  <div class="row justify-content-md-center">
+  <div class="row justify-content-md-center mt-4 mb-4">
     <div class="col col-lg-auto">
       <h2>ユーザーログイン</h2>
     </div>
   </div>
   
   
-  <div class="row justify-content-md-center">
+  <div class="row justify-content-center mt-6 mb-6">
     <div class="col col-lg-auto">    
       <%= form_with model: @user, url: user_session_path do |f| %>
         <div class="field">
-          <%= f.label 'メールアドレス' %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレスを入力" %>
         </div>
       
         <div class="field">
-          <%= f.label 'パスワード' %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワードを入力" %>
         </div>
       
         <% if devise_mapping.rememberable? %>
@@ -28,13 +26,11 @@
         <% end %>
       
         <div class="actions">
-          <%= f.submit "ログイン" %>
+          <%= f.submit "ログイン", class:'btn btn-primary' %>
         </div>
       <% end %>
       
-      <p>未登録の人は</p><%= link_to 'ここから新規登録', new_user_registration_path %>
-      
-      <%= render "user/shared/links" %>
+      <p>未登録の人は<%= link_to 'ここから', new_user_registration_path %>新規登録</p>
       
     </div>
   </div>

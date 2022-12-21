@@ -32,6 +32,7 @@ window.raty = function(elem, opt) {
 //読み込めていても、何らかのエラーが出ていたら、アプリの検証画面でエラーが出る
 
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

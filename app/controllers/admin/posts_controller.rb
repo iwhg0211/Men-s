@@ -7,6 +7,10 @@ class Admin::PostsController < ApplicationController
 
   def create
   end
+  
+  def ranking
+    @post_ranks = Post.all
+  end
 
   def update
     @post = Post.find(params[:id])

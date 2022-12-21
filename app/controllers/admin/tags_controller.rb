@@ -4,6 +4,10 @@ class Admin::TagsController < ApplicationController
     @tag_lists = Tag.all
   end
   
+  def tag_index
+    @tags = Tag.where(post_id :post_id)
+  end
+
   def create
     #tag = Tag.new(tag_para)
     #tag.save
@@ -13,15 +17,15 @@ class Admin::TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find(params[:id])
+    @tag_lists = Tag.find(params[:id])
   end
-  
+
   def update
-    tag = Tag.find(params[:id])
-    tag.update(tag_params)
+    @tag_lists = Tag.find(params[:id])
+    @tag_lists.update(tag_params)
     redirect_to admin_tags_path
   end
-  
+
   private
 
   def tag_params

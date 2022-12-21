@@ -15,8 +15,7 @@ class User::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.save
     #binding.pry
-    redirect_to post_path(@post.id)
-    # 12/10現在、レビューが保存できていない。rails cで確認済み=>12/11解決済み
+    redirect_to posts_path
     # reviewを、誰が（カレントユーザーが）、どの投稿（もとのpostのshowのidは？）に書くのかということを記述できていなかった
   end
 
@@ -24,9 +23,15 @@ class User::ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find(params[:id])
+#    @user = @review.user
+#    @post = @review.post
   end
 
   def edit
+    @review = Review.find(params[:id])
+    @review.update(review_params)
+    redirect_to review_path(@review.id)
   end
 
   private

@@ -1,30 +1,40 @@
-<h3>TOPページ</h3>
+<div class="container">
 
-<p>このサイトは全国の島道府県のラーメン屋のレビューサイトです！<br />
+  <div class="row">
 
-おすすめの店をみんなに紹介し、どんなおすすめポイントがあるのかを共有していきましょう！<br />
+    <div class="col">
+      <h3 class="p-3 mb-2 bg-warning text-dark">麺s</h3>
+      <div class="p-3 mb-2 bg-warning text-dark">~美味しいラーメン情報集積所~</div>
+      <div class="p-3 mb-2 bg-warning text-dark">このサイトは全国の都道府県のラーメン屋のレビューサイトです！<br />
+      おすすめの店をみんなに紹介し、どんなおすすめポイントがあるのかを共有していきましょう！<br />
+      どんなラーメンでも大歓迎！</div>
+      <%= link_to '仮ユーザー一覧', users_path %>
+      <%= link_to homes_guest_sign_in_path, method: :post, class:'mavbar_brand' do %>
+      <button type="button" class="btn btn-warning rounded-circle">ゲストログイン（閲覧用）</button><% end %>
+    </div>
 
-どんなラーメンでも大歓迎！</p>
+    <div class="col">
+      <h3>投稿PV数ランキング一覧</h3>
+      <table class='table-dark table-bordered table-hover' width="90%" height="300">
+        <thead>
+          <tr>
+            <th>順位</th>
+            <th>ユーザー名</th>
+            <th>PV数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_ranks.each.with_index(1) do |post, i| %>
+          <tr>
+            <td>第<%= i %>位</td>
+            <td><%= link_to post.user.user_name, user_path(post.user.id) %></td>
+            <td><%= post.impressionist_count %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<%= link_to '仮ユーザー一覧', users_path %>
+  </div><%#row%>
 
-<h3>閲覧数ランキング一覧</h3>
-
-<table class='table-bordered'>
-  <thead>
-    <tr>
-      <th>順位</th>
-      <th>ユーザー名</th>
-      <th>PV数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @post_ranks.each.with_index(1) do |post, i| %>
-    <tr>
-      <td>第<%= i %>位</td>
-      <td><%= post.user.user_name %></td>
-      <td><%= post.impressionist_count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+</div><%#container%>

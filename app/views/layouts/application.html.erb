@@ -16,45 +16,51 @@
       <nav class="navbar navbar-light">
         <div class="container">
           <ul class="navbar nav-expand-lg list-unstyled">
+            <%= link_to root_path, class:'navbar_brand' do %>
+            <button type="button" class="btn btn-warning rounded-circle">HOME</button><% end %>
             <% if admin_signed_in? %>
             <%#もしadmin(管理者)がログインしていたら%>
               <li>
                 <%= link_to admin_users_path, class:'navbar_brand' do %>
-                <button type="button" class="btn btn-light">会員一覧</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">会員一覧</button><% end %>
               </li>
               <li>
                 <%= link_to admin_posts_path, class:'navbar_brand' do %>
-                <button type="button" class="btn btn-light">投稿一覧</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">投稿一覧</button><% end %>
               </li>
               <li>
                 <%= link_to admin_tags_path, class:'navbar_brand' do %>
-                <button type="button" class="btn btn-light">タグ一覧</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">タグ一覧</button><% end %>
               </li>
               <li>
-                <%= link_to admin_posts_ranking_path, class:'navbar_brand' do %>
-                <button type="button" class="btn btn-light">ランキング一覧</button><% end %>
+                <%= link_to admin_ranking_path, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-warning rounded-circle">ランキング一覧</button><% end %>
               </li>
               <li>
                 <%= link_to destroy_admin_session_path, method: :delete, class:'navbar_brand' do %>
-                <button type="button" class="btn btn-light">ログアウト</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">ログアウト</button><% end %>
               </li>
             <% elsif user_signed_in? %>
             <%#もしuser(ユーザー)がログインしていたら%>
               <li>
-                <%= link_to users_mypage_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">マイページ</button><% end %>
+                <%= link_to mypage_path class:'mavbar_brand' do %>
+                <button type="button" class="btn btn-warning rounded-circle">マイページ</button><% end %>
               </li>
               <li>
                 <%= link_to posts_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">投稿一覧</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">投稿一覧</button><% end %>
               </li>
               <li>
                 <%= link_to new_post_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">新規投稿</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">新規投稿</button><% end %>
+              </li>
+              <li>
+                <%= link_to ranking_path, class:'navbar_brand' do %>
+                <button type="button" class="btn btn-warning rounded-circle">ランキング一覧</button><% end %>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete, class:'navbar_brand' do %>
-                <button type="button" class="btn btn-light">ログアウト</button><% end %>
+                <button type="button" class="btn btn-warning rounded-circle">ログアウト</button><% end %>
               </li>
               <%= form_with model: @tag, url: posts_path,method: :get do |f| %>
                 <%= f.search_field :tag_name %>
@@ -64,16 +70,16 @@
             <%#もしそれ以外なら(今回はログインしていなかったら)%>
               <li>
                 <%= link_to about_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">アバウト</button><% end %>              </li>
+                <button type="button" class="btn btn-warning rounded-circle">アバウト</button><% end %>              </li>
               <li>
                 <%= link_to posts_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">投稿一覧</button><% end %>              </li>
+                <button type="button" class="btn btn-warning rounded-circle">投稿一覧</button><% end %>              </li>
               <li>
                 <%= link_to new_user_registration_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">新規登録</button><% end %>              </li>
+                <button type="button" class="btn btn-warning rounded-circle">新規登録</button><% end %>              </li>
               <li>
                 <%= link_to new_user_session_path class:'mavbar_brand' do %>
-                <button type="button" class="btn btn-light">ログイン</button><% end %>              </li>
+                <button type="button" class="btn btn-warning rounded-circle">ログイン</button><% end %>              </li>
             <% end %>
           </ul>
         </div>
@@ -82,7 +88,11 @@
     <%#  <div class="jumbotron jumbotron-fluid text-white" style="background: url(<%= asset_path "jiro_men.jpg" %.   ); background-size:cover;">  %>
         <%= yield %>
     <%#  </div>  %>
-    <footer>麺s</footer>
+    <footer>
+      <div class="row justify-content-center">
+      麺s
+      </div>
+    </footer>
     </div>
   </body>
 </html>

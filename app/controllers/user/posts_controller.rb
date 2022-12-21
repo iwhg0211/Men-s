@@ -1,5 +1,7 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_user!
   impressionist :actions => [:show], :unique => [:session_hash]
+  #impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
     @tag_list = Tag.all
@@ -21,17 +23,15 @@ class User::PostsController < ApplicationController
     @rank_posts = Post.order(impressions_count: 'DESC') # ソート機能を追加
   end
 
-
+  def ranking
+    @post_ranks = Post.all
+  end
 
   def new
     @post = Post.new
     @tag_lists = Tag.all
   end
 
-  #def create
-    #@post = Post.new(post_params)
-    #@post.save
-    #redirect_to post_path(@post.id)
   def create
     @post = current_user.posts.new(post_params)
     #ここの記述はいまいち説明できない
@@ -40,22 +40,28 @@ class User::PostsController < ApplicationController
     if @post.save
       @post.save_tag(@tag_list)
       #上の@tag_listで入れたデータをsave_tag(post,rbに記述)に入れる
-      #redirect_back(fallback_location: root_path)
-      redirect_to post_path(@post.id)
+      redirect_to posts_path
     else
       redirect_to post_path(@post.id)
     end
   end
 
   def show
-    #@users = User.all
+    #binding.pry
     @post = Post.find(params[:id])
     #↑クリックした投稿を取得
     @post_tags = @post.tags
     #↑そのクリックした投稿に紐付けられているタグの取得。
     #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@post_tagsにした
     @user = User.find(@post.user_id)
-    @reviews = Review.all
+    @reviews = Review.where(post_id: @post.id)
+    #↑投稿のidに紐づいたreviewだけを呼び出して並べたい
+    #なので、whreでpostのidを取得させて並べさせる
+    tag = Tag.find(params[:id])
+    @posts = tag.posts
+    #↑の記述はタグのidに紐づいた投稿の取得
+    @tag = Tag.find(params[:id])
+    #↑の記述はタグ名を表示するため
     #@imagepost = Post.find_by(id: params[:id])
     @post_pv = @post.impressions.size
     #↑PV数を取得
@@ -64,6 +70,13 @@ class User::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to post_path(@post.id)
   end
 
   private

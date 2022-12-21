@@ -1,0 +1,16 @@
+<p><%= current_user.user_name %>の情報編集</p>
+
+<%= form_with model: @user, url: update_mypage_path do |f| %>
+
+<p>ユーザー名</p>
+<%= f.text_field :user_name %>
+
+<p>自己紹介</p>
+<%= f.text_area :self_introduction %>
+
+<p>ユーザー画像</p>
+<%= f.file_field :user_image %>
+
+<%= f.submit '保存' %>
+
+<% end %>
