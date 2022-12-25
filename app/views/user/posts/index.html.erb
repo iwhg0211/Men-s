@@ -3,7 +3,7 @@
 </div>
 
 <div class="row justify-content-center">
-  <table class='table-dark table-bordered table-hover' width="90%" height="300">  
+  <table class='table-dark table-bordered table-hover' width="90%" height="300">
     <thead>
       <tr>
         <th>投稿id</th>
@@ -15,7 +15,7 @@
     <% @posts.each do |post| %>
     <tbody>
       <%#byebug%>
-      <% if post.user.is_deleted == false %>
+      <% if post.user.is_deleted == false && post.is_released == true %>
       <tr>
         <td><%= link_to "#{post.id}", post_path(post.id) %></td>
         <%## ↑の#{post}の#{}は文字列の中に変数を入れることができるもの %>

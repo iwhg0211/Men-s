@@ -9,5 +9,11 @@
 <p>レビュー本文</p>
 <%= @review.shop_review %>
 
- <%= link_to edit_review_path(@review.id) do %>
- <button type="button" class="btn btn-success">編集</button><% end %>
+<%= @review.is_released %>
+ <%= form_with model: @review, url: admin_post_review_path do |f| %>
+ <%= f.radio_button :is_released, :true  %>
+ <%= f.label :is_released, "公開" %>
+ <%= f.radio_button :is_released, :false  %>
+ <%= f.label :is_released, "非公開" %>
+ <%= f.submit '変更',class:'btn btn-primary' %>
+<% end %>
