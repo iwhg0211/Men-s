@@ -1,40 +1,51 @@
-<h3><%= @user.last_name %><%= @user.first_name %>の情報</h3>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.last_name %><%= @user.first_name %>の情報</h3>
+</div>
 
 <% if @user.user_image.attached? %>
 <%# もし user.use_image がつけられていたら？ %>
-<%= image_tag @user.user_image, size: '50×50' %>
+<%= image_tag @user.user_image, size: "50×50" %>
 <%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
 <% else %>
 <%# そうでなければ %>
-<%= image_tag 'men_image.jpeg', size: '50×50' %>
+<%= image_tag 'men_image.jpeg', size: "50×50" %>
 <%# app/assets/image下にあるmen_image.jpegを表示 %>
 <% end %>
 
-<p>メールアドレス</p>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">メールアドレス</p>
 <%= @user.email %>
+</div>
 
-<p>氏名</p>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">氏名</p>
 <%= @user.last_name %><%= @user.first_name %>
+</div>
 
-<p>氏名(フリガナ)</p>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">氏名(フリガナ)</p>
 <%= @user.last_name_kana %><%= @user.first_name_kana %>
+</div>
 
-<p>ユーザー名</p>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">ユーザー名</p>
 <%= @user.user_name %>
+</div>
 
-<p>ランキング</p>
-<% @all_ranks.each do |user| %>
+<!--<p>ランキング</p>-->
+<!--<%# @all_ranks.each do |user| %>-->
   <%#= user.posts.map(&:impressionist_count) %>
-  <% user.posts.each do |user| %>
-    <%= user.posts.impressionist_count %>
-  <% end %>
-<% end %>
+<!--  <%# user.posts.each do |user| %>-->
+<!--    <%#= user.posts.impressionist_count %>-->
+<!--  <%# end %>-->
+<!--<%# end %>-->
 
-<p>登録確認</p>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">登録確認</p>
 <%= @user.is_deleted %>
+</div>
 
-
-
+<div class="row justify-content-center">
 <%= link_to '編集', edit_admin_user_path(@user.id) %>
-
+</div>
 <%#= link_to 'このユーザーのレビュー', admin_reviews_path %>

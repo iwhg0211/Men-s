@@ -48,9 +48,15 @@
         <%#null :falseにしなくて良い%>
       </div>
       
+      <% if current_user.email == 'guest@example.com' %>
+      <div class="row justify-content-center">
+  　　　　<p class="p-3 mb-2 bg-warning text-dark">ゲストユーザーは投稿ができません。</p>
+ 　　　　</div>
+ 　　　　<% else %>
       <div class="row justify-content-center">
         <%= f.submit '新規投稿', class:"btn btn-primary" %>
       </div>
+      <% end %>
     
     <% end %>
     
