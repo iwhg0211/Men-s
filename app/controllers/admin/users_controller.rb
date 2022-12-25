@@ -5,6 +5,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    #@post = Post.find(params[:id])
     @user = User.find(params[:id])
     @all_ranks = User.find(Post.group(:post_id).order('count(id) desc').limit(3).pluck(:id))
   end

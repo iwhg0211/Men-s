@@ -4,18 +4,24 @@ class User::ReviewsController < ApplicationController
     # bindin.pryしたら=> #<ActionController::Parameters {"controller"=>"user/reviews", "action"=>"new"} permitted: false>
     # idがないので、どうしたら渡せるのか考えないと
     #@post = Post.find(params[:id])
-    @user_id = current_user.id
+   #binding.pry
     # 誰がレビューするの？=>今ログインしているユーザーなので「current_user」
-    @post_id = params[:post_id]
+    @post = Post.find(params[:post_id])
     # どの投稿にコメントするの？=>reviewのshowでidを渡した、new_review_path(post_id: @post.id)のidにコメントするで
     @review = Review.new
   end
 
   def create
     @review = Review.new(review_params)
-    @review.save
+    #newから受け取ったレビューの各種内容を持ってくるnew⇨review_params⇨createと飛ばして行っている
+    @review.user_id = current_user.id
+    # @review.user_idで@reviewのuser_idに、current_user.idを入れる。これで@reviewに必要な情報を渡すことができる
+    if @review.save
+      redirect_to posts_path
     #binding.pry
-    redirect_to posts_path
+    else
+      root_path
+    end
     # reviewを、誰が（カレントユーザーが）、どの投稿（もとのpostのshowのidは？）に書くのかということを記述できていなかった
   end
 
@@ -29,6 +35,10 @@ class User::ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
     @review = Review.find(params[:id])
     @review.update(review_params)
     redirect_to review_path(@review.id)

@@ -1,16 +1,27 @@
-<p><%= current_user.user_name %>の情報編集</p>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= current_user.user_name %>の情報編集</h3>
+</div>
 
-<%= form_with model: @user, url: update_mypage_path do |f| %>
 
-<p>ユーザー名</p>
-<%= f.text_field :user_name %>
+<div class="row justify-content-center">
+  <%= form_with model: @user, url: update_mypage_path do |f| %>
+  
+  <p class="p-3 mb-2 bg-warning text-dark">ユーザー名</p>
+  <%= f.text_field :user_name %>
+  
+  <p class="p-3 mb-2 bg-warning text-dark">自己紹介</p>
+  <%= f.text_area :self_introduction %>
+  
+  <p class="p-3 mb-2 bg-warning text-dark">ユーザー画像</p>
+  <%= f.file_field :user_image, accept: "image/*" %>
+  
+  <div class="row justify-content-center">
+  <%= f.submit '保存', class:"btn btn-primary" %>
+  </div>
+  
+  <% end %>
+</div>
 
-<p>自己紹介</p>
-<%= f.text_area :self_introduction %>
-
-<p>ユーザー画像</p>
-<%= f.file_field :user_image %>
-
-<%= f.submit '保存' %>
-
-<% end %>
+<div class="row justify-content-center">
+  <%= link_to '退会画面へ', unsubscribe_path(current_user), class:"btn btn-danger" %>
+</div>

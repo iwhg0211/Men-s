@@ -21,8 +21,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     # resourcesはindex,show,new,creste,edit,update,destroyを勝手に設定してくれます
     # only: にすると上記の７種類の中で好きなものだけ設定できます
-    resources :posts, only: [:index, :show, :edit, :update]
-    resources :reviews, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :edit, :update] do
+    resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+    end
     resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
     get 'tag' => 'tags#tag_index', as: 'tag_index'
     resources :tag_posts, only: [:update]
@@ -41,7 +42,8 @@ Rails.application.routes.draw do
 
     get 'mypage' => 'users#mypage', as: 'mypage'
     # 12/19にしてたミス→get 'users/mypage' => 'users#mypage', as: 'mypage'と最初にusers/にしていたためマイページに飛ばなかった
-    patch 'mypage' => 'users#mypage', as: 'update_mypage'
+    patch 'mypage' => 'users#update_mypage', as: 'update_mypage'
+    # 12/21までpatch 'mypage' => 'users#update_mypage'をpatch 'mypage' => 'users#mypage'にしていたのでアクションがupdateできていなかった。
     get 'edit_mypage' => 'users#edit_mypage', as: 'edit_mypage'
     get 'ranking' => 'posts#ranking', as: 'ranking'
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'

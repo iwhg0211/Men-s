@@ -1,12 +1,39 @@
-<h3>マイページ</h3>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= current_user.user_name %>のマイページ</h3>
+</div>
 
-<p>ユーザー画像</p>
-<%= @user.current_user.user_image %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">ユーザー画像</p>
+</div>
 
-<p>ユーザー名</p>
-<%= current_user.user_name %>
+<div class="row justify-content-center">
+  <% if current_user.user_image.attached? %>
+  <%# もし user.use_image がつけられていたら？ %>
+  <%= image_tag current_user.user_image, size: "200x200" %>
+  <%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
+  <% else %>
+  <%# そうでなければ %>
+  <%= image_tag 'men_image.jpeg', size: "200x200" %>
+  <%# app/assets/image下にあるmen_image.jpegを表示 %>
+  <% end %>
+</div>
 
-<p>自己紹介</p>
-<%= current_user.self_introduction %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">自己紹介</p>
+</div>
+  
+<div class="row justify-content-center">
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= current_user.self_introduction %>
+  </div>
+</div>
 
-<%= link_to '編集', edit_user_path(@user.id) %>
+<% if @user.email == 'guest@example.com' %>
+ <div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">ゲストユーザーはユーザー情報の編集ができません。</p>
+ </div>
+<% else %>
+ <div class="row justify-content-center">
+  <%= link_to '編集', edit_mypage_path(current_user), class:"btn btn-success" %>
+ </div>
+<% end %>

@@ -1,2 +1,46 @@
-<h1>User::Reviews#edit</h1>
-<p>Find me in app/views/user/reviews/edit.html.erb</p>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= @review.post.shop_name %>のレビュー投稿</h3>
+</div>
+
+<%= form_with model: @review, url: review_path(@review.id) do |f| %>
+
+<div class="row justify-content-center">
+  <div id="star" class="p-3 mb-2 bg-dark text-white"></div>
+  <%#星を表示するための記述%>
+</div>
+
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">レビュータイトル</p>
+</div>
+
+<div class="row justify-content-center">
+  <%= f.text_field :review_title %>
+</div>
+
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">レビューコメント</p>
+</div>
+
+<div class="row justify-content-center">
+  <%= f.text_area :shop_review %>
+</div>
+
+<div class="row justify-content-center">
+  <%= f.submit '変更を保存',class:"btn btn-success" %>
+</div>
+
+<% end %>
+
+  <script>
+    var elem = document.getElementById('star')
+    var opt = {
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'review[rate]',
+      half: true,
+    }
+    raty(elem, opt);
+    //application.jsで記述したものを引数として呼び出している
+    //ただ、elm,optとは一体何なのか、ただの引数についた名前ならいいがメソッドの類なら調べる
+  </script>

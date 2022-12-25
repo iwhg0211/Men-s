@@ -24,7 +24,10 @@
 
 <p>ランキング</p>
 <% @all_ranks.each do |user| %>
-<%= user.posts.impressionist_count %>
+  <%#= user.posts.map(&:impressionist_count) %>
+  <% user.posts.each do |user| %>
+    <%= user.posts.impressionist_count %>
+  <% end %>
 <% end %>
 
 <p>登録確認</p>
@@ -34,4 +37,4 @@
 
 <%= link_to '編集', edit_admin_user_path(@user.id) %>
 
-<%= link_to 'このユーザーのレビュー', admin_reviews_path %>
+<%#= link_to 'このユーザーのレビュー', admin_reviews_path %>

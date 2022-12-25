@@ -1,12 +1,14 @@
 class Admin::ReviewsController < ApplicationController
-  
+
   def index
-    @reviews = Review.all.page(params[:page]).per(10)
-    @review = Review.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @reviews = @post.reviews.page(params[:page]).per(10)
+    #binding.pry
   end
 
   def show
     @review = Review.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
 
   private

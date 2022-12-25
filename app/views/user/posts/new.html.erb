@@ -1,92 +1,134 @@
-<h3>新規投稿</h3>
+<div class="row">
+  
+  <div class="col">
+    <div class="row justify-content-center">
+      <h3 class="p-3 mb-2 bg-warning text-dark">新規投稿</h3>
+    </div>
+    
+    <%= form_with model: @post, url: posts_path do |f| %>
+      
+      <div class="row justify-content-center">
+        <p class="p-3 mb-2 bg-warning text-dark">店の名前</p>
+        <%= f.text_field :shop_name %>
+      </div>
+      
+      <div class="row justify-content-center">
+        <p class="p-3 mb-2 bg-warning text-dark">店の説明</p>
+        <%= f.text_area :shop_explanation %>
+      </div>
+      
+      <div class="row justify-content-center">
+        <p class="p-3 mb-2 bg-warning text-dark">店の画像</p>
+        <%= f.file_field :post_image, accept: "image/*" %>
+        <%#null :falseにしなくて良い%>
+      </div>
+      
+      <div class="row justify-content-center">
+        <p class="p-3 mb-2 bg-warning text-dark">店の住所</p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <p class="p-3 mb-2 bg-warning text-dark">右の地図で検索して入力してね！</p>
+      </div>
+        
+      <div class="row justify-content-center">
+        <%= f.text_field :address %>
+      </div>
+      
+      
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :tag_id, :value => current_user.id %>
+      
+      <div class="row justify-content-center">
+        <p class="p-3 mb-2 bg-warning text-dark">タグ名</p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <%= f.text_field :tag_name %>
+        <%#null :falseにしなくて良い%>
+      </div>
+      
+      <div class="row justify-content-center">
+        <%= f.submit '新規投稿', class:"btn btn-primary" %>
+      </div>
+    
+    <% end %>
+    
+    <div class="row justify-content-center">
+      <h3 class="p-3 mb-2 bg-warning text-dark">タグリスト</h3>
+    </div>
+    
+    <div class="row justify-content-center">
+      <% @tag_lists.each do |tag| %>
+        <div class="p-3 mb-2 bg-dark text-white">
+          <%= link_to tag.tag_name, tags_path(id: tag.id), class:"btn-outline-warning" %>
+          <%= "(#{tag.posts.count})"%>
+          <%# タグが何件登録されたかのカウント %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="col">
+    <div class="row justify-content-center">
+      <h3 class="p-3 mb-2 bg-warning text-dark">googlemap</h3>
+    </div>
+    
+     <!--地名入力用のinputを追加 -->
+    <input id="address" type="textbox" value="Sydney, NSW">
+    
+     <!--buttonをクリックしたらcodeAddressを実行　-->
+    <input type="button" value="Encode" onclick="codeAddress()" class="btn btn-primary">
+    <div id='map'>
+    </div>
+    
+    <style>
+    #map{
+      height: 400px;
+    }
+    </style>
+    
+    <script>
+    /*
+    mapを関数の外で定義(codeAddressでも使うため)
+    geocoderを用意
+    */
+    
+    let map
+    let geocoder
+    
+    function initMap(){
+      // geocoderを初期化
+      geocoder = new google.maps.Geocoder()
+    
+      map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+      });
+    }
+    
+    function codeAddress(){
+      // 入力を取得
+      let inputAddress = document.getElementById('address').value;
+    
+      // geocodingしたあとmapを移動
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+    　　　　　　　　　　　　// map.setCenterで地図が移動
+          map.setCenter(results[0].geometry.location);
+    
+    　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY']%>&callback=initMap" async defer></script>
+  </div>
 
-<%= form_with model: @post, url: posts_path do |f| %>
-
-<p>店の名前</p>
-<%= f.text_field :shop_name %>
-
-<p>店の説明</p>
-<%= f.text_area :shop_explanation %>
-
-<p>店の画像</p>
-<%= f.file_field :post_image %>
-<%#null :falseにしなくて良い%>
-
-<p>店の住所</p>
-<%#= f.text_field :address %>
-
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :tag_id, :value => current_user.id %>
-
-<p>タグ名</p>
-<%= f.text_field :tag_name %>
-<%#null :falseにしなくて良い%>
-
-<%= f.submit '新規投稿' %>
-
-<% end %>
-
-<h3>タグリスト</h3>
-<% @tag_lists.each do |tag| %>
-    <%= link_to tag.tag_name, tags_path(id: tag.id) %>
-    <%= "(#{tag.posts.count})"%>
-    <%# タグが何件登録されたかのカウント %>
-<% end %>
-
-<!--<h3>googlemap</h3>-->
-
-<!-- 地名入力用のinputを追加 -->
-<!--<input id="address" type="textbox" value="Sydney, NSW">-->
-
-<!-- buttonをクリックしたらcodeAddressを実行　-->
-<!--<input type="button" value="Encode" onclick="codeAddress()">-->
-<!--<div id='map'>-->
-<!--</div>-->
-
-<!--<style>-->
-<!--#map{-->
-<!--  height: 400px;-->
-<!--}-->
-<!--</style>-->
-
-<!--<script>-->
-<!--/*-->
-<!--mapを関数の外で定義(codeAddressでも使うため)-->
-<!--geocoderを用意-->
-<!--*/-->
-
-<!--let map-->
-<!--let geocoder-->
-
-<!--function initMap(){-->
-<!--  // geocoderを初期化-->
-<!--  geocoder = new google.maps.Geocoder()-->
-
-<!--  map = new google.maps.Map(document.getElementById('map'), {-->
-<!--  center: {lat: -34.397, lng: 150.644},-->
-<!--  zoom: 8-->
-<!--  });-->
-<!--}-->
-
-<!--function codeAddress(){-->
-<!--  // 入力を取得-->
-<!--  let inputAddress = document.getElementById('address').value;-->
-
-<!--  // geocodingしたあとmapを移動-->
-<!--  geocoder.geocode( { 'address': inputAddress}, function(results, status) {-->
-<!--    if (status == 'OK') {-->
-<!--　　　　　　　　　　　　// map.setCenterで地図が移動-->
-<!--      map.setCenter(results[0].geometry.location);-->
-
-<!--　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ-->
-<!--      var marker = new google.maps.Marker({-->
-<!--          map: map,-->
-<!--          position: results[0].geometry.location-->
-<!--      });-->
-<!--    } else {-->
-<!--      alert('Geocode was not successful for the following reason: ' + status);-->
-<!--    }-->
-<!--  });-->
-<!--}-->
-<!--</script>-->
-<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY']%>&callback=initMap" async defer></script>-->
+</div>

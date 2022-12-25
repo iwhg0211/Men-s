@@ -3,7 +3,7 @@ class Admin::TagsController < ApplicationController
   def index
     @tag_lists = Tag.all
   end
-  
+
   def tag_index
     @tags = Tag.where(post_id :post_id)
   end
@@ -23,6 +23,12 @@ class Admin::TagsController < ApplicationController
   def update
     @tag_lists = Tag.find(params[:id])
     @tag_lists.update(tag_params)
+    redirect_to admin_tags_path
+  end
+
+  def destroy
+    @tag_lists = Tag.find(params[:id])
+    @tag_lists.destroy
     redirect_to admin_tags_path
   end
 

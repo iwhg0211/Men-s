@@ -1,8 +1,8 @@
 class User::UsersController < ApplicationController
 
-  def index
-    @users = User.all.page(params[:page])
-  end
+  # def index
+  #   @users = User.all.page(params[:page])
+  # end
 
   def show
     @user = User.find(params[:id])
@@ -19,35 +19,43 @@ class User::UsersController < ApplicationController
   end
 
   def mypage
-    @user = User.find(params[:id])
+    @user = current_user
+    #↑current_userの情報をとるときはこのくらいシンプルにとる。
+    # 前までやっていたcurrent_user.idにしてしまうとidしか取ってこなくなるので、このくらいシンプルに書く
   end
 
   def edit_mypage
-    @user = User.current_scope
+    @user = current_user
   end
 
   def update_mypage
-    @user = User.current_scope
-    @user.update(user_params)
+    @user = current_user
+    current_user.update(user_params)
     redirect_to mypage_path
   end
 
   def unsubscribe
-    @user = User.find_by(email: params[:user][:email])
+    @user = User.find(params[:id])
   end
 
   def withdraw
     #binding.pry
-    @user = User.find_by(email: params[:user][:email])
-    # 退会するユーザーのidを見つける
-    @user.update(user_params)
-    #@user.update(is_deleted :true)
-    # is_deletedをtrue(退会)にupdateする
-    reset_session
-　　# セッション情報を全て削除します。
-    flash[:notice] = "退会処理を実行しました"
-    # viewにflashメッセージを表示するため
-    redirect_to root_path
+    @user = User.find(params[:id])
+    if @user.email == 'guest@example.com'
+      reset_session
+      redirect_to :root
+    else
+      # パラメータ⇨画面（view）から飛んでくるもの、ユーザーなどの情報、
+      # 退会するユーザーのidを見つける
+      #@user.update(user_params)
+      @user.update(is_deleted: :true)
+      # is_deletedをtrue(退会)にupdateする
+      reset_session
+      # セッション情報を全て削除します。
+      flash[:notice] = "退会処理を実行しました"
+      # viewにflashメッセージを表示するため
+      redirect_to root_path
+    end
   end
 
   private

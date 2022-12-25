@@ -1,22 +1,36 @@
-<%= @user.user_name %><p>の情報詳細</p>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.user_name %>の情報詳細</h3>
+</div>
 
-<% if @user.user_image.attached? %>
-  <%= image_tag @user.user_image, size: "50x50" %>
-<% else %>
-  <%= image_tag 'men_image', size: "50x50" %>
-<% end %>
+<div class="row justify-content-center">
+  <% if @user.user_image.attached? %>
+    <%= image_tag @user.user_image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'men_image', size: "200x200" %>
+  <% end %>
+</div>
 
-<p>ユーザー名</p>
-<%= @user.user_name %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">ユーザー名</p><br />
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.user_name %>
+  </div>
+</div>
 
-<p>自己紹介</p>
-<%= @user.self_introduction %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">自己紹介</p><br />
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.self_introduction %>
+  </div>
+</div>
 
-<% if current_user.id == @user.id %>
-<%# ここ、ログイン中のユーザーだと編集ボタンが出るように、それ以外は編集ボタンが出ないようにした！ %> 
- <%= link_to '編集', edit_user_path(@user.id) %>
-<% else %>
-<% end %>
+<div class="row justify-content-center">
+  <% if current_user == @user.id %>
+  <%# ここ、ログイン中のユーザーだと編集ボタンが出るように、それ以外は編集ボタンが出ないようにした！ %> 
+   <%= link_to '編集', edit_user_path(@user.id) %>
+  <% else %>
+  <% end %>
+</div>
 
 <%#= link_to @user.user_name'の投稿一覧',  %>
 <%# ここ１人ユーザーの投稿一覧を表示したい %>

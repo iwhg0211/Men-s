@@ -1,17 +1,33 @@
-<h3><%= @review.user.user_name %>の<%= @review.post.shop_name %>のレビュー詳細</h3>
+<div class="row justify-content-center">
+ <h3 class="p-3 mb-2 bg-warning text-dark"><%= @review.user.user_name %>の<%= @review.post.shop_name %>のレビュー詳細</h3>
+</div>
 
-<p>星の数</p>
-<%= @review.rate %>
-
-<p>レビュータイトル</p>
-<%= @review.review_title %>
-
-<p>レビュー本文</p>
-<%= @review.shop_review %>
-
-<% if @review.user_id == current_user.id %>
-<%# @user.idがcurrent_user.idだったらリンクを表示、違ったら表示なし %>
- <%= link_to edit_review_path(@review.id) do %>
- <button type="button" class="btn btn-success">編集</button><% end %>
-<% else %>
-<% end %>
+<div class="row justify-content-center">
+ <p class="p-3 mb-2 bg-warning text-dark">星の数</p>
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.rate %>
+ </div>
+</div>
+ 
+<div class="row justify-content-center">
+ <p class="p-3 mb-2 bg-warning text-dark">レビュータイトル</p>
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.review_title %>
+ </div>
+</div>
+ 
+<div class="row justify-content-center">
+ <p class="p-3 mb-2 bg-warning text-dark">レビュー本文</p>
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.shop_review %>
+ </div>
+</div>
+ 
+<div class="row justify-content-center">
+ <% if @review.user_id == current_user.id %>
+ <%# @user.idがcurrent_user.idだったらリンクを表示、違ったら表示なし %>
+  <%= link_to edit_review_path(@review.id) do %>
+  <button type="button" class="btn btn-success">編集</button><% end %>
+ <% else %>
+ <% end %>
+</div>

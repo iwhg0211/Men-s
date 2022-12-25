@@ -5,14 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_one_attached :user_image
-         has_many :posts
-         has_many :reviews
+         has_many :posts, dependent: :destroy
+         has_many :reviews, dependent: :destroy
 
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
+
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -20,5 +20,5 @@ class User < ApplicationRecord
       # user.name = "ゲストユーザー" # ←ユーザー名を設定している場合は追加
     end
   end
-  
+
 end

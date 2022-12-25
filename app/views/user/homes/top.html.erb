@@ -8,32 +8,40 @@
       <div class="p-3 mb-2 bg-warning text-dark">このサイトは全国の都道府県のラーメン屋のレビューサイトです！<br />
       おすすめの店をみんなに紹介し、どんなおすすめポイントがあるのかを共有していきましょう！<br />
       どんなラーメンでも大歓迎！</div>
-      <%= link_to '仮ユーザー一覧', users_path %>
-      <%= link_to homes_guest_sign_in_path, method: :post, class:'mavbar_brand' do %>
-      <button type="button" class="btn btn-warning rounded-circle">ゲストログイン（閲覧用）</button><% end %>
+      <% if user_signed_in? %>
+        <p>signed_in</p>
+      <% elsif admin_signed_in? %>
+        <p>signed_in</p>
+      <% else %>
+        <%= link_to homes_guest_sign_in_path, method: :post, class:'mavbar_brand' do %>
+        <button type="button" class="btn btn-warning rounded-circle">ゲストログイン（閲覧用）</button><% end %>
+      <% end %>
     </div>
-
-    <div class="col">
-      <h3>投稿PV数ランキング一覧</h3>
-      <table class='table-dark table-bordered table-hover' width="90%" height="300">
-        <thead>
-          <tr>
-            <th>順位</th>
-            <th>ユーザー名</th>
-            <th>PV数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @post_ranks.each.with_index(1) do |post, i| %>
-          <tr>
-            <td>第<%= i %>位</td>
-            <td><%= link_to post.user.user_name, user_path(post.user.id) %></td>
-            <td><%= post.impressionist_count %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    
+    <%#ランキング機能は追加予定%>
+    <!--<div class="col">-->
+    <!--  <h3 class="p-3 mb-2 bg-warning text-dark">投稿PV数ランキング一覧</h3>-->
+    <!--  <table class='table-dark table-bordered table-hover' width="90%" height="300">-->
+    <!--    <thead>-->
+    <!--      <tr>-->
+    <!--        <th>順位</th>-->
+    <!--        <th>ユーザー名</th>-->
+    <!--        <th>店名</th>-->
+    <!--        <th>PV数</th>-->
+    <!--      </tr>-->
+    <!--    </thead>-->
+    <!--    <tbody>-->
+    <!--      <%# @post_ranks.each.with_index(1) do |post, i| %>-->
+    <!--      <tr>-->
+    <!--        <td>第<%#= i %>位</td>-->
+    <!--        <td><%#= link_to post.user.user_name, user_path(post.user.id) %></td>-->
+    <!--        <td><%#= post.shop_name %></td>-->
+    <!--        <td><%#= post.impressionist_count %></td>-->
+    <!--      </tr>-->
+    <!--      <%# end %>-->
+    <!--    </tbody>-->
+    <!--  </table>-->
+    <!--</div>-->
 
   </div><%#row%>
 

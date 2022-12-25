@@ -1,29 +1,37 @@
-<h3><%#= @user.user_name %>の<%#= @post.shop_name %>のレビュー投稿</h3>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>のレビュー投稿</h3>
+</div>
 
-<%= form_with model: @review, url: reviews_path() do |f| %>
+<%= form_with model: @review, url: reviews_path do |f| %>
 
-  <!--<div class="form-group row" id="star">-->
-  <!--  <%#= f.label :rate,'星の数 ', class:'col-md-3 col-form-label' %>-->
-  <!--  <%#= f.hidden_field :rate %>-->
+<div class="row justify-content-center">
+  <div id="star" class="p-3 mb-2 bg-dark text-white"></div>
+  <%#星を表示するための記述%>
+</div>
 
-  <!--</div>-->
-<div id="star"></div>
-<%#星を表示するための記述%>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">レビュータイトル</p>
+</div>
 
-<p>レビュータイトル</p>
+<div class="row justify-content-center">
 <%= f.text_field :review_title %>
+</div>
 
-<p>レビューコメント</p>
+<div class="row justify-content-center">
+<p class="p-3 mb-2 bg-warning text-dark">レビューコメント</p>
+</div>
+
+<div class="row justify-content-center">
 <%= f.text_area :shop_review %>
+<%= f.hidden_field :post_id, :value => @post.id %>
+</div>
 
-<%= f.hidden_field :post_id, :value => @post_id %>
-<%= f.hidden_field :user_id, :value => @user_id %>
-
-<%= f.submit 'レビュー投稿' %>
+<div class="row justify-content-center">
+<%= f.submit 'レビュー投稿',class:"btn btn-primary" %>
 
 <% end %>
+</div>
 
-  <!-- 評価javascript -->
   <script>
     var elem = document.getElementById('star')
     var opt = {
@@ -33,15 +41,6 @@
       scoreName: 'review[rate]',
       half: true,
     }
-    //↑ここの記述の意味を調べる！
-  // $('#star').raty({
-  //   size     : 36,
-    // starOff:  '<%#= asset_path('star-off.png') %>',
-    // starOn : '<%#= asset_path('star-on.png') %>',
-    // starHalf: '<%#= asset_path('star-half.png') %>',
-    // scoreName: 'preview[rate]',
-    // half: true,
-  // });
     raty(elem, opt);
     //application.jsで記述したものを引数として呼び出している
     //ただ、elm,optとは一体何なのか、ただの引数についた名前ならいいがメソッドの類なら調べる

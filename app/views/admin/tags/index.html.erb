@@ -17,7 +17,7 @@
         <td><%= tag.id %></td>
         <td><%= tag.tag_name %></td>
         <td><%= link_to '編集', edit_admin_tag_path(tag.id), class:'btn btn-success' %>
-            <%= link_to '削除', admin_tag_path(tag.id), method: :delete, class:'btn btn-danger' %></td>
+            <%= link_to '削除', admin_tag_path(tag.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:'btn btn-danger' %></td>
       </tr>
       <% end %>
     </tbody>

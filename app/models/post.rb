@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_one_attached :post_image
   has_many :tag_posts, dependent: :destroy
   has_many :tags, through: :tag_posts
+  has_many :reviews, dependent: :destroy
 
   belongs_to :user
 
@@ -11,8 +12,8 @@ class Post < ApplicationRecord
   validates :shop_name, presence: true
   validates :shop_explanation, presence: true
 
-  # geocoded_by :address
-  # after_validation :geocode
+  geocoded_by :address
+  after_validation :geocode
 
   def save_tag(tag_list)
     #self.tags.pluck(:tag_name) unless self.tags.nil?

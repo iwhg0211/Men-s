@@ -1,33 +1,33 @@
-<h3><%= @user.last_name %><%= @user.first_name %>の投稿情報詳細</h3>
-<table>
-  <thead>
-    <tr>
-      <th>店名</th>
-      <th>店の説明</th>
-      <th>投稿ユーザー名</th>
-      <th>公開設定</th>
-      <th>公開・非公開設定</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @post.shop_name %></td>
-      <td><%= @post.shop_explanation %></td>
-      <td><%= @user.last_name %><%= @user.first_name %></td>
-      <td><%= @post.is_released %></td>
-      <td><%= form_with model: @post, url: admin_post_path do |f| %>
-          <%= f.radio_button :is_released, :true  %>
-          <%= f.label :is_released, "公開" %><br />
-          <%= f.radio_button :is_released, :false  %>
-          <%= f.label :is_released, "非公開" %><br />
-          <%= f.submit '変更' %>
-          <% end %></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>PV数</p>
-<p><%= @post.impressionist_count %></p>
-<%#.これでPVの数を表示 %>
-
-<%= link_to 'このユーザーのレビュー一覧', admin_reviews_path %>
+<h3><%= @post.user.user_name %>の投稿情報詳細</h3>
+<div class="row justify-content-center">
+  <table class='table-dark table-bordered table-hover' width="90%" height="auto">
+    <thead>
+      <tr>
+        <th>店名</th>
+        <th>店の説明</th>
+        <th>投稿氏名</th>
+        <th>公開設定</th>
+        <th>公開・非公開設定</th>
+        <th>PV数</th>
+        <th>この投稿のレビュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @post.shop_name %></td>
+        <td><%= @post.shop_explanation %></td>
+        <td><%= @post.user.last_name %><%= @post.user.first_name %></td>
+        <td><%= @post.is_released %></td>
+        <td><%= form_with model: @post, url: admin_post_path do |f| %>
+            <%= f.radio_button :is_released, :true  %>
+            <%= f.label :is_released, "公開" %>
+            <%= f.radio_button :is_released, :false  %>
+            <%= f.label :is_released, "非公開" %>
+            <%= f.submit '変更',class:'btn btn-primary' %>
+            <% end %></td>
+        <td><%= @post.impressionist_count %><%#.これでPVの数を表示 %></td>
+        <td><%= link_to 'レビューの一覧', admin_post_reviews_path(@post.id) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

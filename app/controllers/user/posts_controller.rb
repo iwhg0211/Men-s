@@ -4,7 +4,7 @@ class User::PostsController < ApplicationController
   #impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
-    @tag_list = Tag.all
+    @tag_list = Tag.all.page(params[:page])
     #↑ビューでタグ一覧を表示するために全取得。
     if params[:tag_name].present?
       tag = Tag.find_by(tag_name: params[:tag_name])
@@ -20,7 +20,8 @@ class User::PostsController < ApplicationController
     #↑ビューのform_withのmodelに使う。
     @users = User.all
     #@all_ranks = Post.find(Post.group(:id).order('count(id) desc').limit(3).pluck(:id))
-    @rank_posts = Post.order(impressions_count: 'DESC') # ソート機能を追加
+    #@rank_posts = Post.order(impressions_count: 'DESC') # ソート機能を追加
+    @rank_posts = Post.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(3).pluck(:impressionable_id))
   end
 
   def ranking
@@ -42,7 +43,9 @@ class User::PostsController < ApplicationController
       #上の@tag_listで入れたデータをsave_tag(post,rbに記述)に入れる
       redirect_to posts_path
     else
-      redirect_to post_path(@post.id)
+      #render :new
+      redirect_to new_post_path
+      # 空欄で投稿画面に戻る
     end
   end
 
@@ -54,13 +57,13 @@ class User::PostsController < ApplicationController
     #↑そのクリックした投稿に紐付けられているタグの取得。
     #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@post_tagsにした
     @user = User.find(@post.user_id)
-    @reviews = Review.where(post_id: @post.id)
+    @reviews = @post.reviews
     #↑投稿のidに紐づいたreviewだけを呼び出して並べたい
     #なので、whreでpostのidを取得させて並べさせる
-    tag = Tag.find(params[:id])
-    @posts = tag.posts
+    #tag = Tag.find(params[:id])
+    #@posts = tag.posts
     #↑の記述はタグのidに紐づいた投稿の取得
-    @tag = Tag.find(params[:id])
+    #@tag = Tag.find(params[:id])
     #↑の記述はタグ名を表示するため
     #@imagepost = Post.find_by(id: params[:id])
     @post_pv = @post.impressions.size
