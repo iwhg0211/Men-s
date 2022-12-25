@@ -10,12 +10,12 @@ class Admin::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @post = Post.find(params[:post_id])
   end
-  
+
   def update
-    #@post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to admin_post_reviews(@post.id)
+    redirect_to admin_post_review_path(@post.id, @review.id)
   end
 
   private
