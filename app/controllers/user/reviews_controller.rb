@@ -20,7 +20,7 @@ class User::ReviewsController < ApplicationController
       redirect_to posts_path
     #binding.pry
     else
-      root_path
+      redirect_to posts_path
     end
     # reviewを、誰が（カレントユーザーが）、どの投稿（もとのpostのshowのidは？）に書くのかということを記述できていなかった
   end
