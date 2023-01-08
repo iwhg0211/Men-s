@@ -1,19 +1,46 @@
-<h3><%= @review.user.user_name %>の<%= @review.post.shop_name %>のレビュー詳細</h3>
+<div class="row justify-content-center">
+ <h3 class="p-3 mb-2 bg-warning text-dark"><%= @review.user.user_name %>の<%= @review.post.shop_name %>のレビュー詳細</h3>
+</div>
 
-<p>星の数</p>
-<%= @review.rate %>
+<div class="row justify-content-center">
+ <p class="p-3 mb-2 bg-warning text-dark">星の数</p>
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.rate %>
+ </div>
+</div>
 
-<p>レビュータイトル</p>
-<%= @review.review_title %>
+<div class="row justify-content-center">
+ <p class="p-3 mb-2 bg-warning text-dark">レビュータイトル</p>
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.review_title %>
+ </div>
+</div>
 
-<p>レビュー本文</p>
-<%= @review.shop_review %>
+<div class="row justify-content-center">
+ <p class="p-3 mb-2 bg-warning text-dark">レビュー本文</p>
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.shop_review %>
+ </div>
+</div>
 
-<%= @review.is_released %>
- <%= form_with model: @review, url: admin_post_review_path do |f| %>
- <%= f.radio_button :is_released, :true  %>
- <%= f.label :is_released, "公開" %>
- <%= f.radio_button :is_released, :false  %>
- <%= f.label :is_released, "非公開" %>
- <%= f.submit '変更',class:'btn btn-primary' %>
+<div class="row justify-content-center">
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= @review.is_released %>
+ </div>
+</div>
+
+<div class="row justify-content-center">
+ <div class="p-3 mb-2 bg-dark text-white">
+  <%= form_with model: @review, url: admin_post_review_path do |f| %>
+  <%= f.radio_button :is_released, :true  %>
+  <%= f.label :is_released, "公開" %>
+  <%= f.radio_button :is_released, :false  %>
+  <%= f.label :is_released, "非公開" %>
+ </div>
+</div>
+ 
+ <div class="row justify-content-center">
+  <%= f.submit '変更',class:'btn btn-primary' %>
+ </div>
 <% end %>
+
