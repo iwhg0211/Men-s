@@ -53,7 +53,9 @@ class User::PostsController < ApplicationController
     #binding.pry
     @post = Post.find(params[:id])
     #↑クリックした投稿を取得
-    @post_tags = @post.tags
+    @post_tags = @post.tags.distinct
+    #@tag_post = TagPost.where(post_id: @post)
+    #@post_tags = TagPost.where(post_id: @post)
     #↑そのクリックした投稿に紐付けられているタグの取得。
     #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@post_tagsにした
     @user = User.find(@post.user_id)

@@ -22,13 +22,14 @@ class Post < ApplicationRecord
       tag_posts_records.destroy_all
     end
 
+    tag_list = tag_list - self.tags.pluck(:tag_name)
+
     tag_list.each do |tag|
       inspected_tag = Tag.where(tag_name: tag).first_or_create
       self.tags << inspected_tag
     end
 
     # current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-    # #binding.pry
     # old_tags = current_tags - sent_tags
     # new_tags = sent_tags - current_tags
 

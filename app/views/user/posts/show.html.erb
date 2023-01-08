@@ -1,44 +1,44 @@
 <div class="row">
   <div class="col">
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.user_name %>の投稿情報詳細</h3>
-    
+
     <% if @post.post_image.attached? %>
       <%= image_tag @post.post_image, size: "100x100" %>
     <% else %>
       <%= image_tag 'men_image', size: "100x100" %>
     <% end %>
-    
+
     <p class="p-3 mb-2 bg-warning text-dark text_align-center">店名</p>
     <div class="p-3 mb-2 bg-dark text-white">
       <%= @post.shop_name %>
     </div>
-    
+
     <p class="p-3 mb-2 bg-warning text-dark">店の説明</p>
     <div class="p-3 mb-2 bg-dark text-white">
       <%= @post.shop_explanation %>
     </div>
-    
+
     <% if @user.id == current_user.id %>
     <%# @user.idがcurrent_user.idだったらリンクを表示、違ったら表示なし %>
      <%= link_to edit_post_path(@post.id) do %>
      <button type="button" class="btn btn-success">編集</button><% end %>
     <% else %>
     <% end %>
-    
+
     <%#ランキング機能は実装予定%>
     <!--<p class="p-3 mb-2 bg-warning text-dark">PV数</p>-->
     <!--<div class="p-3 mb-2 bg-dark text-white">-->
     <!--  <p><%#= @post.impressionist_count %></p>-->
       <%#.これでPVの数を表示 %>
     <!--</div>-->
-    
-    
+
+
     <p class="p-3 mb-2 bg-warning text-dark">店の地図</p>
     <script type="text/javascript">
          function initMap() {
            var test = {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
            var map = new google.maps.Map(document.getElementById('map'), {
-                     zoom: 15, 
+                     zoom: 15,
                      center: test
                      });
            var transitLayer = new google.maps.TransitLayer();
@@ -66,17 +66,17 @@
        </style>
        <div id="map"></div>
   </div>
-  
+
   <div class="col">
     <h3 class="p-3 mb-2 bg-warning text-dark">タグリスト</h3>
     <% @post_tags.each do |tag| %>
       <div class="p-3 mb-2 bg-dark text-white">
         <%= link_to tag.tag_name, tags_path(id: tag.id), class:"btn-outline-warning" %>
-        <%= "(#{tag.posts.count})" %>
+        <%= "(#{tag.posts.where(shop_name: @post.shop_name).count})" %>
         <%# タグが何件登録されたかの %>
       </div>
     <% end %>
-    
+
     <%= form_with model: @tag_show, url: tags_path do |f| %>
       <p class="p-3 mb-2 bg-warning text-dark">タグ名</p>
       <%= f.text_field :tag_name %>
@@ -84,10 +84,10 @@
       <%#↑のhidden_fieldでどの投稿にtagをつけるか、というデータを送る、そのために@post.idを送っている%>
       <%= f.submit '新規投稿', class:'btn btn-primary' %>
     <% end %>
-    
-    
+
+
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>のレビュー一覧</h3>
-    
+
     <table class='table-dark table-bordered table-hover' width="70%" height="40">
       <thead>
         <tr>
@@ -114,11 +114,11 @@
       </tbody>
       <% end %>
     </table>
-    
+
     <%= link_to new_review_path(post_id: @post.id) do %>
     <button type="button" class="btn btn-primary">レビュー投稿</button><% end %>
     <%# postのshowからreviewのnewに遷移するとき「どの投稿からreviewのnewに飛ぶのか」という情報が必要になるので、pathにpostのidを乗せてあげる必要があった %>
     <%#ただ、普通は親と子のルーティングをネストさせてあげるのが一般的なので、これからはそっち使う %>
   </div>
-  
+
 </div>
