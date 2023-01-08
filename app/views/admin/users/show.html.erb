@@ -2,34 +2,44 @@
   <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.last_name %><%= @user.first_name %>の情報</h3>
 </div>
 
-<% if @user.user_image.attached? %>
-<%# もし user.use_image がつけられていたら？ %>
-<%= image_tag @user.user_image, size: "50×50" %>
-<%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
-<% else %>
-<%# そうでなければ %>
-<%= image_tag asset_path('men_image.png', :size => "50x50") %>
-<%# app/assets/image下にあるmen_image.jpegを表示 %>
-<% end %>
-
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">メールアドレス</p>
-<%= @user.email %>
+  <% if @user.user_image.attached? %>
+  <%# もし user.use_image がつけられていたら？ %>
+  <%= image_tag @user.user_image, size: "50×50" %>
+  <%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
+  <% else %>
+  <%# そうでなければ %>
+  <%= image_tag asset_path('men_image.png', :size => "50x50") %>
+  <%# app/assets/image下にあるmen_image.jpegを表示 %>
+  <% end %>
 </div>
 
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">氏名</p>
-<%= @user.last_name %><%= @user.first_name %>
+  <p class="p-3 mb-2 bg-warning text-dark">メールアドレス</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.email %>
+  </div>
 </div>
 
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">氏名(フリガナ)</p>
-<%= @user.last_name_kana %><%= @user.first_name_kana %>
+  <p class="p-3 mb-2 bg-warning text-dark">氏名</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.last_name %><%= @user.first_name %>
+  </div>
 </div>
 
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">ユーザー名</p>
-<%= @user.user_name %>
+  <p class="p-3 mb-2 bg-warning text-dark">氏名(フリガナ)</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.last_name_kana %><%= @user.first_name_kana %>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">ユーザー名</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.user_name %>
+  </div>
 </div>
 
 <!--<p>ランキング</p>-->
@@ -41,11 +51,13 @@
 <!--<%# end %>-->
 
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">登録確認</p>
-<%= @user.is_deleted %>
+  <p class="p-3 mb-2 bg-warning text-dark">登録確認</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.is_deleted %>
+  </div>
 </div>
 
 <div class="row justify-content-center">
-<%= link_to '編集', edit_admin_user_path(@user.id) %>
+<%= link_to '編集', edit_admin_user_path(@user.id), class:'btn btn-success' %>
 </div>
 <%#= link_to 'このユーザーのレビュー', admin_reviews_path %>

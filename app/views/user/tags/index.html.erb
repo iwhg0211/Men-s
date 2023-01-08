@@ -1,7 +1,5 @@
 <div class="row justify-content-center">
-<div class="col-lg">
   <h3 class="p-3 mb-2 bg-warning text-dark"><%= @tag.tag_name %>のタグがついた投稿一覧</h3>
-</div>
 </div>
 
 <div class="row justify-content-center">
@@ -16,7 +14,7 @@
     <tbody>
       <tr>
         <td><%= post.user.user_name %></td>
-        <td><%= link_to post.shop_name, post_path(post.id) %></td>
+        <td><%= link_to post.shop_name, post_path(post.id), class:'btn btn-warning' %></td>
       </tr>
     </tbody>
     <% end %>

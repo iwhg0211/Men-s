@@ -9,9 +9,9 @@
       おすすめの店をみんなに紹介し、どんなおすすめポイントがあるのかを共有していきましょう！<br />
       どんなラーメンでも大歓迎！</div>
       <% if user_signed_in? %>
-        <p>signed_in</p>
+        <p class="p-3 mb-2 bg-warning text-dark">signed_in</p>
       <% elsif admin_signed_in? %>
-        <p>signed_in</p>
+        <p class="p-3 mb-2 bg-warning text-dark">signed_in</p>
       <% else %>
         <%= link_to homes_guest_sign_in_path, method: :post, class:'mavbar_brand' do %>
         <button type="button" class="btn btn-warning rounded-circle">ゲストログイン（閲覧用）</button><% end %>

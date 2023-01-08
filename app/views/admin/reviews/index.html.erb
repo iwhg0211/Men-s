@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <h3><%= @post.user.user_name %>のレビュー一覧</h3>
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.user.user_name %>のレビュー一覧</h3>
   <%# admin/reviews_controllerのindexでbinding.pryをしたときに@postで調べた。 %>
   <%# するとuser_idも取得できていたことがわかった。 %>
   <%# なので、@postに紐づいたuser.user_nameが取れる。このときアソシエーションができているか注意！ %>

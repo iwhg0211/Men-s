@@ -16,7 +16,7 @@
     <tbody>
       <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.id, admin_user_path(user.id) %></td>
+        <td><%= link_to user.id, admin_user_path(user.id), class:'btn btn-warning' %></td>
         <td><%= user.user_name %></td>
         <td><%= user.last_name %><%= user.first_name %></td>
         <td><%= user.last_name_kana %><%= user.first_name_kana %></td>

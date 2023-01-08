@@ -1,4 +1,6 @@
-<h3><%= @user.last_name %><%= @user.first_name %>の情報編集</h3>
+<div class="row justify-content-center">
+  <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.last_name %><%= @user.first_name %>の情報編集</h3>
+</div>
 
 <% if @user.user_image.attached? %>
 <%# もし user.use_image がつけられていたら？ %>
@@ -10,33 +12,56 @@
 <%# app/assets/image下にあるmen_image.jpegを表示 %>
 <% end %>
 
-<p>メールアドレス</p>
-<%= @user.email %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">メールアドレス</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.email %>
+  </div>
+</div>
 
-<p>氏名</p>
-<%= @user.last_name %><%= @user.first_name %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">氏名</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.last_name %><%= @user.first_name %>
+  </div>
+</div>
 
-<p>氏名(フリガナ)</p>
-<%= @user.last_name_kana %><%= @user.first_name_kana %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">氏名(フリガナ)</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.last_name_kana %><%= @user.first_name_kana %>
+  </div>
+</div>
 
-<p>ユーザー名</p>
-<%= @user.user_name %>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">ユーザー名</p>
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= @user.user_name %>
+  </div>
+</div>
 
 <!--<p>ランキング</p>-->
 <%#ここは後回し 12/3時点%>
+<div class="row justify-content-center">
+  <p class="p-3 mb-2 bg-warning text-dark">登録変更</p>
+</div>
 
-<p>登録変更</p>
 <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
 
-<%= f.radio_button :is_deleted, false %>
-<%# radio_buttonで選択のボタン作成、:is_deletedはboolean型のカラム、 falseは真偽値農地の１つ %>
-<%= f.label :is_deleted, '有効' %>
-<%# labelで選択肢の言葉を変更する、ここを記述しなければ選択肢がfalse(true)のまま %>
+<div class="row justify-content-center">
+  <div class="p-3 mb-2 bg-dark text-white">
+    <%= f.radio_button :is_deleted, false %>
+    <%# radio_buttonで選択のボタン作成、:is_deletedはboolean型のカラム、 falseは真偽値農地の１つ %>
+    <%= f.label :is_deleted, '有効' %>
+    <%# labelで選択肢の言葉を変更する、ここを記述しなければ選択肢がfalse(true)のまま %>
+    <%= f.radio_button :is_deleted, true %>
+    <%= f.label :is_deleted, '退会' %>
+  </div>
+</div>
 
-<%= f.radio_button :is_deleted, true %>
-<%= f.label :is_deleted, '退会' %>
-
-<%= f.submit '保存' %>
+<div class="row justify-content-center">
+  <%= f.submit '保存', class:'btn btn-primary' %>
 <%# submitの記述でDBへデータを送信、ここをlink_toで記述しないように注意 %>
+</div>
 
 <% end %>

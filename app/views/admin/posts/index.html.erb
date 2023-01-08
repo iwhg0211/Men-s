@@ -19,7 +19,7 @@
       <tbody>
       <%# if post.user.is_deleted == false %>
       <tr>
-        <td><%= link_to "#{post.id}", admin_post_path(post.id) %></td>
+        <td><%= link_to "#{post.id}", admin_post_path(post.id), class:'btn btn-warning' %></td>
         <%# ↑の#{post}の#{}は文字列の中に変数を入れることができるもの %>
         <td><%= post.user.user_name %></td>
         <td><%= post.shop_name %></td>
