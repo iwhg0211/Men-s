@@ -66,7 +66,7 @@ class User::PostsController < ApplicationController
     #@tag = Tag.find(params[:id])
     #↑の記述はタグ名を表示するため
     #@imagepost = Post.find_by(id: params[:id])
-    @post_pv = @post.impressions.size
+    #@post_pv = @post.impressions.size
     #↑PV数を取得
     @tag_show = Tag.new
     #↑postのshowページで新しくタグを作るためにnewでフォームを作成
