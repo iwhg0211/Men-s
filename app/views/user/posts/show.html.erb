@@ -114,9 +114,15 @@
       </tbody>
       <% end %>
     </table>
-
-    <%= link_to new_review_path(post_id: @post.id) do %>
-    <button type="button" class="btn btn-primary">レビュー投稿</button><% end %>
+    
+    <% if current_user.email == 'guest@example.com' %>
+      <div class="row justify-content-center">
+    　　<p class="p-3 mb-2 bg-warning text-dark">ゲストユーザーはレビューができません。</p>
+  　　</div>
+　　<% else %>
+      <%= link_to new_review_path(post_id: @post.id) do %>
+      <button type="button" class="btn btn-primary">レビュー投稿</button><% end %>
+    <% end %>
     <%# postのshowからreviewのnewに遷移するとき「どの投稿からreviewのnewに飛ぶのか」という情報が必要になるので、pathにpostのidを乗せてあげる必要があった %>
     <%#ただ、普通は親と子のルーティングをネストさせてあげるのが一般的なので、これからはそっち使う %>
   </div>
