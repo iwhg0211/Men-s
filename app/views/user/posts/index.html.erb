@@ -6,7 +6,7 @@
   <table class='table-dark table-bordered table-hover' width="90%" height="300">
     <thead>
       <tr>
-        <th>投稿id</th>
+        <!--<th>投稿id</th>-->
         <th>ユーザー名</th>
         <th>店名</th>
         <th>店の説明</th>
@@ -17,10 +17,10 @@
       <%#byebug%>
       <% if post.user.is_deleted == false && post.is_released == true %>
       <tr>
-        <td><%= link_to "#{post.id}", post_path(post.id) %></td>
+        <!--<td><%#= "#{post.id}" %></td>-->
         <%## ↑の#{post}の#{}は文字列の中に変数を入れることができるもの %>
         <td><%= post.user.user_name %></td>
-        <td><%= post.shop_name %></td>
+        <td><%= link_to post.shop_name, post_path(post.id) %></td>
         <td><%= post.shop_explanation %></td>
       </tr>
       <% else %>
