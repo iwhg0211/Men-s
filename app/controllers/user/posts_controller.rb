@@ -4,17 +4,17 @@ class User::PostsController < ApplicationController
   #impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
-    @tag_list = Tag.all.page(params[:page])
+    @tag_list = Tag.all.page(params[:page]).per(10)
     #↑ビューでタグ一覧を表示するために全取得。
     if params[:tag_name].present?
-      tag = Tag.find_by(tag_name: params[:tag_name])
+      tag = Tag.find_by(tag_name: params[:tag_name]).per(10)
       if tag.present?
-       @posts = tag.posts.page(params[:page])
+       @posts = tag.posts.page(params[:page]).per(10)
       else
-       @posts = Post.all.page(params[:page])
+       @posts = Post.all.page(params[:page]).per(10)
       end
     else
-     @posts = Post.all.page(params[:page])
+     @posts = Post.all.page(params[:page]).per(10)
     end
     @post = current_user.posts.new
     #↑ビューのform_withのmodelに使う。
