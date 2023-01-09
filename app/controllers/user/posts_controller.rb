@@ -7,7 +7,7 @@ class User::PostsController < ApplicationController
     @tag_list = Tag.all.page(params[:page]).per(10)
     #↑ビューでタグ一覧を表示するために全取得。
     if params[:tag_name].present?
-      tag = Tag.find_by(tag_name: params[:tag_name]).per(10)
+      tag = Tag.find_by(tag_name: params[:tag_name])
       if tag.present?
        @posts = tag.posts.page(params[:page]).per(10)
       else
