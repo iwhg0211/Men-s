@@ -1,5 +1,6 @@
 class User::TagsController < ApplicationController
 
+  
   def index
     tag = Tag.find(params[:id])
     @posts = tag.posts

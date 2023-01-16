@@ -1,87 +1,89 @@
 <div class="row">
-<div class="col justify-content-center">
-<h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>の編集</h3>
-
-<%= form_with model: @post, url: post_path do |f| %>
-
-<p class="p-3 mb-2 bg-warning text-dark">店の名前</p>
-
-<%= f.text_field :shop_name %>
-
-<p class="p-3 mb-2 bg-warning text-dark">店の説明</p>
-
-<%= f.text_area :shop_explanation %>
-
-<p class="p-3 mb-2 bg-warning text-dark">店の画像</p>
-
-<%= f.file_field :post_image, accept: "image/*" %>
-
-<p class="p-3 mb-2 bg-warning text-dark">右の地図で検索して入力してね！</p>
-
-<%= f.text_field :address %><br />
-
-<%= f.submit '保存', class:"btn btn-primary" %>
-<% end %>
-</div>
-
-<div class="col justify-content-center">
-    <h3 class="p-3 mb-2 bg-warning text-dark">googlemap</h3>
-
-     <!--地名入力用のinputを追加 -->
-    <input id="address" type="textbox" value="東京">
-
-     <!--buttonをクリックしたらcodeAddressを実行　-->
-    <input type="button" value="Encode" onclick="codeAddress()" class="btn btn-primary">
-    <div id='map'>
-    </div>
-
-    <style>
-    #map{
-      height: 400px;
-    }
-    </style>
-
-    <script>
-    /*
-    mapを関数の外で定義(codeAddressでも使うため)
-    geocoderを用意
-    */
-
-    let map
-    let geocoder
-
-    function initMap(){
-      // geocoderを初期化
-      geocoder = new google.maps.Geocoder()
-
-      map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 36, lng: 140},
-      zoom: 8
-      });
-    }
-
-    function codeAddress(){
-      // 入力を取得
-      let inputAddress = document.getElementById('address').value;
-
-      // geocodingしたあとmapを移動
-      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-        if (status == 'OK') {
-    　　　　　　　　　　　　// map.setCenterで地図が移動
-          map.setCenter(results[0].geometry.location);
-
-    　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
-          var marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-          });
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
-      });
-    }
-    </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY']%>&callback=initMap" async defer></script>
+  <div class="col">
+    <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>の編集</h3>
+    
+    <%= form_with model: @post, url: post_path do |f| %>
+    
+    <p class="p-3 mb-2 bg-warning text-dark">店の名前</p>
+    
+    <%= f.text_field :shop_name %>
+    
+    <p class="p-3 mb-2 bg-warning text-dark">店の説明</p>
+    
+    <%= f.text_area :shop_explanation %>
+    
+    <p class="p-3 mb-2 bg-warning text-dark">店の画像</p>
+    
+    <%= f.file_field :post_image, accept: "image/*" %>
+    
+    <p class="p-3 mb-2 bg-warning text-dark">右の地図で検索して入力してね！</p>
+    
+    <%= f.text_field :address %><br />
+    
+    <%= f.submit '保存', class:"btn btn-primary" %>
+    <% end %>
   </div>
   
-</div>
+  <div class="col justify-content-center">
+      <h3 class="p-3 mb-2 bg-warning text-dark">googlemap</h3>
+  
+       <!--地名入力用のinputを追加 -->
+      <input id="address" type="textbox" value="東京">
+      <%#↑value=""で最初に入っている地名を選べる%>
+  
+       <!--buttonをクリックしたらcodeAddressを実行　-->
+      <input type="button" value="Encode" onclick="codeAddress()" class="btn btn-primary">
+      <div id='map'>
+      </div>
+  
+      <style>
+      #map{
+        height: 400px;
+      }
+      </style>
+  
+      <script>
+      /*
+      mapを関数の外で定義(codeAddressでも使うため)
+      geocoderを用意
+      */
+  
+      let map
+      let geocoder
+  
+      function initMap(){
+        // geocoderを初期化
+        geocoder = new google.maps.Geocoder()
+  
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 36, lng: 140},
+        <%#↑地図の初期位置をlat→緯度、lng→経度で設定できる%>
+        zoom: 8
+        });
+      }
+  
+      function codeAddress(){
+        // 入力を取得
+        let inputAddress = document.getElementById('address').value;
+  
+        // geocodingしたあとmapを移動
+        geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+          if (status == 'OK') {
+      　　　　　　　　　　　　// map.setCenterで地図が移動
+            map.setCenter(results[0].geometry.location);
+  
+      　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+      </script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY']%>&callback=initMap" async defer></script>
+    </div>
+    
+  </div>
