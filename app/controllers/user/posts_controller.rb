@@ -40,7 +40,7 @@ class User::PostsController < ApplicationController
     #post,tag_nameのparamsから取ったデータを「,」で分けて@tag_listに入れる
     if @post.save
       @post.save_tag(@tag_list)
-      #上の@tag_listで入れたデータをsave_tag(post,rbに記述)に入れる
+      #上の@tag_listで入れたデータをsave_tag(post.rbに記述)に入れる
       redirect_to posts_path
     else
       #render :new
