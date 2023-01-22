@@ -1,7 +1,7 @@
 class User::PostsController < ApplicationController
   before_action :authenticate_user!
+  #全てのアクションの前にuserのログインしているかどうかを確認するdeviseのメソッド
   impressionist :actions => [:show], :unique => [:session_hash]
-  #impressionist :actions => [:show], :unique => [:impressionable_id, :ip_address]
 
   def index
     @tag_list = Tag.all.page(params[:page]).per(10)
@@ -24,13 +24,16 @@ class User::PostsController < ApplicationController
     @rank_posts = Post.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(3).pluck(:impressionable_id))
   end
 
-  def ranking
-    @post_ranks = Post.all
-  end
+  # def ranking
+  #   @post_ranks = Post.all
+  # end
+  #↑実装しようとしていたランキング機能、いずれ実装
 
   def new
     @post = Post.new
+    #↑新規投稿のフォームを作成する
     @tag_lists = Tag.all
+    #↑DBにあるタグを全て取得
   end
 
   def create
@@ -50,46 +53,43 @@ class User::PostsController < ApplicationController
   end
 
   def show
-    #binding.pry
     @post = Post.find(params[:id])
-    #↑クリックした投稿を取得
+    #↑クリックした投稿のidを取得
     @post_tags = @post.tags.distinct
-    #@tag_post = TagPost.where(post_id: @post)
-    #@post_tags = TagPost.where(post_id: @post)
-    #↑そのクリックした投稿に紐付けられているタグの取得。
-    #ここは参考にしたところはpost_tagsだったが、テーブル名の都合上@post_tagsにした
+    #↑@postに紐づいたtagを取得し、distinctで重複したものをまとめる
     @user = User.find(@post.user_id)
+    #↑投稿のuser_idを取得し、@userに入れる
     @reviews = @post.reviews
     #↑投稿のidに紐づいたreviewだけを呼び出して並べたい
-    #なので、whreでpostのidを取得させて並べさせる
-    #tag = Tag.find(params[:id])
-    #@posts = tag.posts
-    #↑の記述はタグのidに紐づいた投稿の取得
-    #@tag = Tag.find(params[:id])
-    #↑の記述はタグ名を表示するため
+    #------------------------------------------------------
+    #↓PV数を取得
     #@imagepost = Post.find_by(id: params[:id])
     #@post_pv = @post.impressions.size
-    #↑PV数を取得
+    #------------------------------------------------------
     @tag_show = Tag.new
     #↑postのshowページで新しくタグを作るためにnewでフォームを作成
   end
 
   def edit
     @post = Post.find(params[:id])
+    #↑クリックした投稿のidを取得
   end
 
   def update
     @post = Post.find(params[:id])
+    #↑クリックした投稿のidを取得
     @post.update(post_params)
+    #↑(post_params)に入っていて、@postで取得したデータをupdateでする
     redirect_to post_path(@post.id)
   end
 
   private
-
+  #↓viewで投稿したときにしたでpermit(許可)したデータをpost_paramsに入れる
   def post_params
     params.require(:post).permit(:user_id, :shop_name, :shop_explanation, :address, :latitude, :longitude, :is_released, :post_image)
   end
-
+  
+  #↓viewで投稿したときにしたでpermit(許可)したデータをtag_paramsに入れる
   def tag_params
     params.require(:tag).permit(:tag_name)
   end

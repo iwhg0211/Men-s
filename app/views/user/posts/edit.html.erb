@@ -3,6 +3,8 @@
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>の編集</h3>
     
     <%= form_with model: @post, url: post_path do |f| %>
+    <%# @postのpost_path(rails routesで見て、VerbがPATCHでactionがupdate)を記述、編集するからPATCHのURLを選ぶ %>
+    <%# |f|はブロック変数なので、下のフォームでブロック変数を設定することで、入力した情報を送信 %>
     
     <p class="p-3 mb-2 bg-warning text-dark">店の名前</p>
     
@@ -54,6 +56,7 @@
       function initMap(){
         // geocoderを初期化
         geocoder = new google.maps.Geocoder()
+        <%# ↑新しいGeocoderを %>
   
         map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 36, lng: 140},

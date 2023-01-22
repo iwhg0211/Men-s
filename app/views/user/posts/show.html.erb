@@ -59,6 +59,7 @@
     </script>
        <script async defer
                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['MAP_API_KEY'] %>&callback=initMap">
+                // ENV[...]は環境変数
        </script>
        <style type="text/css">
          #map { height: 200px;
@@ -72,6 +73,7 @@
     <% @post_tags.each do |tag| %>
       <div class="p-3 mb-2 bg-dark text-white">
         <%= link_to tag.tag_name, tags_path(id: tag.id), class:"btn-outline-warning" %>
+        <!--↑tags_path(id: tag.id)に遷移する-->
         <%= "(#{tag.posts.where(shop_name: @post.shop_name).count})" %>
         <%# タグが何件登録されたかの %>
       </div>
@@ -99,6 +101,7 @@
       <% @reviews.each do |review| %>
       <tbody>
         <%if review.is_released == true %>
+        <!--↑reviewのis_released(boolean型)がtrueであれば、という意味-->
         <tr>
           <td><%= review.user.user_name %></td>
           <td>
