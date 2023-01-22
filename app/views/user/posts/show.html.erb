@@ -118,7 +118,7 @@
       <% end %>
     </table>
     
-    <% if current_user.email == 'guest@example.com' %>
+    <% if current_user.email == ENV['GUEST_EMAIL'] %>
       <div class="row justify-content-center">
     　　<p class="p-3 mb-2 bg-warning text-dark">ゲストユーザーはレビューができません。</p>
   　　</div>
