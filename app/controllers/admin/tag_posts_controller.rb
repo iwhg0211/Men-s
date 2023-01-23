@@ -1,4 +1,4 @@
 class Admin::TagPostsController < ApplicationController
-  def update
-  end
+  # def update
+  # end
 end

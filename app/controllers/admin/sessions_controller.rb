@@ -28,7 +28,7 @@ class Admin::SessionsController < Devise::SessionsController
   def reject_user
     # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
     @user = User.find_by(name: params[:user][:user_name])
-    # ログイン時に入力された名前に対応するユーザーが存在するか探しています。
+    # ↑ログイン時に入力された名前に対応するユーザーが存在するか探しています。
     if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
         # 入力されたパスワードが正しいことを確認しています。

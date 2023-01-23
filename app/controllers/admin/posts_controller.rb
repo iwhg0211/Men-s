@@ -1,16 +1,12 @@
 class Admin::PostsController < ApplicationController
   def index
-    @users = User.all
-    #@user = User.find(params[:id])
     @posts = Post.all.page(params[:page]).per(10)
   end
 
-  def create
-  end
-
-  def ranking
-    @post_ranks = Post.all
-  end
+  #↓ランキング機能は実装予定
+  # def ranking
+  #   @post_ranks = Post.all
+  # end
 
   def update
     @post = Post.find(params[:id])
@@ -21,11 +17,8 @@ class Admin::PostsController < ApplicationController
   def show
     #@user = User.find(params[:id])
     @post = Post.find(params[:id])
-    #@reviews = Review.where(post_id: @post.id)
     @reviews = @post.reviews
-  end
-
-  def edit
+    #↑@postに紐づいたreviewを取得して@reviewsに格納
   end
 
   private

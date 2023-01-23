@@ -26,5 +26,5 @@ class ApplicationController < ActionController::Base
           # adminのログインページに遷移する
       end
   end
-
+  
 end
