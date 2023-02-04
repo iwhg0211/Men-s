@@ -9,9 +9,6 @@ class Admin::TagsController < ApplicationController
   end
 
   def create
-    #tag = Tag.new(tag_para)
-    #tag.save
-    #render :index
     @post = Post.find(params[:post_id])
     redirect_to root_path
   end

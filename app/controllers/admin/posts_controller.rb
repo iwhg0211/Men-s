@@ -15,7 +15,6 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
     @post = Post.find(params[:id])
     @reviews = @post.reviews
     #↑@postに紐づいたreviewを取得して@reviewsに格納
