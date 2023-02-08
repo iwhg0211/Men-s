@@ -7,6 +7,13 @@ class User < ApplicationRecord
          has_one_attached :user_image
          has_many :posts, dependent: :destroy
          has_many :reviews, dependent: :destroy
+  
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :email, presence: true, uniqueness: true
+  
 
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?
