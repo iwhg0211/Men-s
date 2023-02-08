@@ -18,7 +18,6 @@ class User::ReviewsController < ApplicationController
     # @review.user_idで@reviewのuser_idに、current_user.idを入れる。これで@reviewに必要な情報を渡すことができる
     if @review.save
       redirect_to posts_path
-    #binding.pry
     else
       redirect_to posts_path
     end
@@ -30,8 +29,6 @@ class User::ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-#    @user = @review.user
-#    @post = @review.post
   end
 
   def edit

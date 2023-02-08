@@ -62,7 +62,7 @@ class User::PostsController < ApplicationController
     @reviews = @post.reviews
     #↑投稿のidに紐づいたreviewだけを呼び出して並べたい
     #------------------------------------------------------
-    #↓PV数を取得
+    #↓PV数を取得(実装予定機能)
     #@imagepost = Post.find_by(id: params[:id])
     #@post_pv = @post.impressions.size
     #------------------------------------------------------
