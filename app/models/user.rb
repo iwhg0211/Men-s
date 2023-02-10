@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   
 
-  # is_deletedがfalseならtrueを返すようにしている
+  # is_deletedがfalse(会員登録中、つまり退会していない)ならtrueを返す(ログインできる)ようにしている
   def active_for_authentication?
     super && (is_deleted == false)
   end
