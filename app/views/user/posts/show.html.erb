@@ -1,5 +1,10 @@
 <div class="row">
   <div class="col">
+    
+    <div class="row justify-content-center">
+      <%= flash[:cannot_save_of_tags] %>
+    </div>
+    
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.user_name %>の投稿情報詳細</h3>
 
     <% if @post.post_image.attached? %>
@@ -69,6 +74,7 @@
   </div>
 
   <div class="col">
+
     <h3 class="p-3 mb-2 bg-warning text-dark">タグリスト</h3>
     <% @post_tags.each do |tag| %>
       <div class="p-3 mb-2 bg-dark text-white">
@@ -117,7 +123,7 @@
       </tbody>
       <% end %>
     </table>
-    
+
     <% if current_user.email == ENV['GUEST_EMAIL'] %>
       <div class="row justify-content-center">
     　　<p class="p-3 mb-2 bg-warning text-dark">ゲストユーザーはレビューができません。</p>

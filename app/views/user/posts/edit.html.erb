@@ -2,6 +2,10 @@
   <div class="col">
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>の編集</h3>
     
+    <div class="row justify-content-center">
+      <%= flash[:cannot_update_of_tags] %>
+    </div>
+    
     <%= form_with model: @post, url: post_path do |f| %>
     <%# @postのpost_path(rails routesで見て、VerbがPATCHでactionがupdate)を記述、編集するからPATCHのURLを選ぶ %>
     <%# |f|はブロック変数なので、下のフォームでブロック変数を設定することで、入力した情報を送信 %>

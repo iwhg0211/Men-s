@@ -20,6 +20,7 @@ class User::ReviewsController < ApplicationController
       redirect_to posts_path
     else
       redirect_to posts_path
+      flash[:cannot_save_of_reviews] = "レビューの星を入力してください。レビューの保存はされませんでした。"
     end
     # reviewを、誰が（カレントユーザーが）、どの投稿（もとのpostのshowのidは？）に書くのかということを記述できていなかった
   end

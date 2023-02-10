@@ -1,6 +1,6 @@
 class User::TagsController < ApplicationController
 
-  
+
   def index
     tag = Tag.find(params[:id])
     @posts = tag.posts
@@ -16,6 +16,7 @@ class User::TagsController < ApplicationController
        redirect_to post_path(@post.id)
     else
        redirect_to post_path(@post.id)
+       flash[:cannot_save_of_tags] = "「タグ名」を入力してください。"
     end
   end
 
