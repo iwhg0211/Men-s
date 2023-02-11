@@ -84,9 +84,9 @@ class User::PostsController < ApplicationController
     #↑(post_params)に入っていて、@postで取得したデータをupdateでする
         redirect_to post_path(@post.id)
     else
-       @post.update(post_params)
-       flash[:cannot_update_of_tags] = "「店の名前」もしくは「店の説明」を入力してください。"
-    end
+        flash[:cannot_update_of_posts] = "「店の名前」もしくは「店の説明」を入力してください。"
+        render :edit
+          end
   end
 
   private

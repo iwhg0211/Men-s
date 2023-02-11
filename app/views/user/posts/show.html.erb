@@ -81,7 +81,7 @@
         <%= link_to tag.tag_name, tags_path(id: tag.id), class:"btn-outline-warning" %>
         <!--↑tags_path(id: tag.id)に遷移する-->
         <%= "(#{tag.posts.where(shop_name: @post.shop_name).count})" %>
-        <%# タグが何件登録されたかの %>
+        <%# タグが何件登録されたかの機能 %>
       </div>
     <% end %>
 
