@@ -1,10 +1,6 @@
 <div class="row">
   <div class="col">
-    
-    <div class="row justify-content-center">
-      <%= flash[:cannot_save_of_tags] %>
-    </div>
-    
+
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.user_name %>の投稿情報詳細</h3>
 
     <% if @post.post_image.attached? %>
@@ -75,6 +71,10 @@
 
   <div class="col">
 
+    <div class="row justify-content-center">
+      <%= flash[:cannot_save_of_tags] %>
+    </div>
+
     <h3 class="p-3 mb-2 bg-warning text-dark">タグリスト</h3>
     <% @post_tags.each do |tag| %>
       <div class="p-3 mb-2 bg-dark text-white">
@@ -92,6 +92,8 @@
       <%#↑のhidden_fieldでどの投稿にtagをつけるか、というデータを送る、そのために@post.idを送っている%>
       <%= f.submit '新規投稿', class:'btn btn-primary' %>
     <% end %>
+    <p class="p-3 mb-2 bg-warning text-dark">↑空欄で新規投稿を押すとこのページを再表示します</p>
+
 
 
     <h3 class="p-3 mb-2 bg-warning text-dark"><%= @post.shop_name %>のレビュー一覧</h3>

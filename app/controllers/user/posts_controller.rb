@@ -86,7 +86,7 @@ class User::PostsController < ApplicationController
     else
         flash[:cannot_update_of_posts] = "「店の名前」もしくは「店の説明」を入力してください。"
         render :edit
-          end
+    end
   end
 
   private

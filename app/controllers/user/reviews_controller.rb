@@ -1,11 +1,5 @@
 class User::ReviewsController < ApplicationController
   def new
-    #@user = User.find(params[:id])
-    # bindin.pryしたら=> #<ActionController::Parameters {"controller"=>"user/reviews", "action"=>"new"} permitted: false>
-    # idがないので、どうしたら渡せるのか考えないと
-    #@post = Post.find(params[:id])
-   #binding.pry
-    # 誰がレビューするの？=>今ログインしているユーザーなので「current_user」
     @post = Post.find(params[:post_id])
     # どの投稿にコメントするの？=>reviewのshowでidを渡した、new_review_path(post_id: @post.id)のidにコメントするで
     @review = Review.new
