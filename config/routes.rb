@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     # resourcesはindex,show,new,creste,edit,update,destroyを勝手に設定してくれます
     # only: にすると上記の７種類の中で好きなものだけ設定できます
     resources :posts, only: [:index, :show, :edit, :update] do
-    resources :reviews, only: [:index, :show, :edit, :update, :destroy]
+      resources :reviews, only: [:index, :show, :edit, :update, :destroy]
     end
     resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
     get 'tag' => 'tags#tag_index', as: 'tag_index'
