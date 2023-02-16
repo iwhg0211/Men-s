@@ -37,8 +37,9 @@ Rails.application.routes.draw do
     post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
     get 'about' => 'homes#about', as: 'about'
     resources :users
-    resources :posts
-    resources :reviews
+    resources :posts do
+      resources :reviews
+    end
 
     get 'mypage' => 'users#mypage', as: 'mypage'
     # 12/19にしてたミス→get 'users/mypage' => 'users#mypage', as: 'mypage'と最初にusers/にしていたためマイページに飛ばなかった
