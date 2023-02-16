@@ -13,5 +13,9 @@ class Tag < ApplicationRecord
 
   validates :tag_name, uniqueness: true, presence: true
   # ↑はどんな記述
+  
+  #   scope :by_tag_name_like, lambda { |tag_name|
+  #   where('tag_name LIKE :value', { value: "#{sanitize_sql_like(tag_name)}%"})
+  # }
 
 end

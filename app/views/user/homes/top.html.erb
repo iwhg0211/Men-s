@@ -43,5 +43,19 @@
     <!--  </table>-->
     <!--</div>-->
   </div>
+  
+  <div class="row justify-content-center">
+    <h3 class="p-3 mb-2 bg-warning text-dark">すべてのタグ</h3>
+  </div>
+
+  <div class="row justify-content-center">
+    <% @tag_lists.each do |tag| %>
+      <div class="p-3 mb-2 bg-dark text-white">
+        <%= link_to tag.tag_name, tags_path(id: tag.id), class:"btn-outline-warning" %>
+        <%= "(#{tag.posts.count})"%>
+        <%# タグが何件登録されたかのカウント %>
+      </div>
+    <% end %>
+  </div>
 
 </div>

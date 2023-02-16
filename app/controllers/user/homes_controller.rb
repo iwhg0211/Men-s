@@ -1,7 +1,8 @@
 class User::HomesController < ApplicationController
   #before_action :authenticate_user!, except: [:top, :about]
   def top
-    @post_ranks = Post.all.page(params[:page]).per(3)
+    # @post_ranks = Post.all.page(params[:page]).per(3)
+    @tag_lists = Tag.all
   end
 
   def about

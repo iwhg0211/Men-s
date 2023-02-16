@@ -2,15 +2,17 @@
   <h3 class="p-3 mb-2 bg-warning text-dark"><%= @user.last_name %><%= @user.first_name %>の情報編集</h3>
 </div>
 
-<% if @user.user_image.attached? %>
-<%# もし user.use_image がつけられていたら？ %>
-<%= image_tag @user.user_image, size: "50×50" %>
-<%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "50×50" =>画像の大きさを決定 %>
-<% else %>
-<%# そうでなければ %>
-<%= image_tag asset_path('men_image.png', :size => "50x50") %>
-<%# app/assets/image下にあるmen_image.jpegを表示 %>
-<% end %>
+<div class="row justify-content-center">
+  <% if @user.user_image.attached? %>
+  <%# もし user.use_image がつけられていたら？ %>
+  <%= image_tag @user.user_image, size: "200×200" %>
+  <%# image_tag => 画像を表示するメソッド、 user.user_image => userテーブルのuser_imageメソッドから画像を引っ張る、 size: "200×200" =>画像の大きさを決定 %>
+  <% else %>
+  <%# そうでなければ %>
+  <%= image_tag 'men_image.png', size: "200x200" %>
+  <%# app/assets/image下にあるmen_image.jpegを表示 %>
+  <% end %>
+</div>
 
 <div class="row justify-content-center">
   <p class="p-3 mb-2 bg-warning text-dark">メールアドレス</p>

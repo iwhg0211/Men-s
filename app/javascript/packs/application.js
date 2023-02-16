@@ -36,3 +36,6 @@ window.raty = function(elem, opt) {
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//= require jquery
+//= require jquery-ui/widgets/autocomplete

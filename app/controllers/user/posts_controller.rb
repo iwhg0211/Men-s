@@ -90,12 +90,12 @@ class User::PostsController < ApplicationController
   end
 
   private
-  #↓viewで投稿したときにしたでpermit(許可)したデータをpost_paramsに入れる
+  #↓viewで投稿したときに下でpermit(許可)したデータをpost_paramsに入れる
   def post_params
     params.require(:post).permit(:user_id, :shop_name, :shop_explanation, :address, :latitude, :longitude, :is_released, :post_image)
   end
 
-  #↓viewで投稿したときにしたでpermit(許可)したデータをtag_paramsに入れる
+  #↓viewで投稿したときに下でpermit(許可)したデータをtag_paramsに入れる
   def tag_params
     params.require(:tag).permit(:tag_name)
   end

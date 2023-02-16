@@ -68,4 +68,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'jquery-ui-rails'
-gem 'acts-as-taggable-on'
+
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on', branch: 'master'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'

@@ -19,8 +19,12 @@ class Admin::TagsController < ApplicationController
 
   def update
     @tag_lists = Tag.find(params[:id])
-    @tag_lists.update(tag_params)
-    redirect_to admin_tags_path
+    if @tag_lists.update(tag_params)
+        redirect_to admin_tags_path
+    else
+        flash[:cannot_update_of_admin_tags] = "「タグ名」を入力してください。"
+        redirect_to admin_tags_path
+    end
   end
 
   def destroy

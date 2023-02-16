@@ -50,7 +50,12 @@ Rails.application.routes.draw do
     # ↑退会確認ページを表示するためのルーティング
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     # ↑論理削除するためのルーティング、patchにするのが大事
-    resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :tags, only: [:index, :new, :create, :edit, :update, :destroy] do
+      collection do
+        get 'search'
+        get 'autocomplete' # この１行を追記
+      end
+    end
     resources :tag_posts
   end
 
