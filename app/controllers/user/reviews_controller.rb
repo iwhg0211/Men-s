@@ -33,7 +33,7 @@ class User::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to review_path(@review.id)
+    redirect_to post_review_path(post_id: @review.id)
   end
 
   private
