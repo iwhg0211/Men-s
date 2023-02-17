@@ -4,11 +4,6 @@ class Admin::PostsController < ApplicationController
     @posts = Post.all.page(params[:page]).per(10)
   end
 
-  #↓ランキング機能は実装予定
-  # def ranking
-  #   @post_ranks = Post.all
-  # end
-
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)

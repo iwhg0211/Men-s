@@ -6,8 +6,6 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #↓ランキング機能は実装予定
-    #@all_ranks = User.find(Post.group(:post_id).order('count(id) desc').limit(3).pluck(:id))
   end
 
   def edit

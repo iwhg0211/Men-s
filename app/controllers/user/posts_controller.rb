@@ -19,15 +19,7 @@ class User::PostsController < ApplicationController
     @post = current_user.posts.new
     #↑ビューのform_withのmodelに使う。
     @users = User.all
-    #@all_ranks = Post.find(Post.group(:id).order('count(id) desc').limit(3).pluck(:id))
-    #@rank_posts = Post.order(impressions_count: 'DESC') # ソート機能を追加
-    #@rank_posts = Post.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(3).pluck(:impressionable_id))
   end
-
-  # def ranking
-  # @post_ranks = Post.all
-  # end
-  #↑実装しようとしていたランキング機能、いずれ実装
 
   def new
     @post = Post.new
@@ -63,11 +55,6 @@ class User::PostsController < ApplicationController
     #↑投稿のuser_idを取得し、@userに入れる
     @reviews = @post.reviews
     #↑投稿のidに紐づいたreviewだけを呼び出して並べたい
-    #------------------------------------------------------
-    #↓PV数を取得(実装予定機能)
-    #@imagepost = Post.find_by(id: params[:id])
-    #@post_pv = @post.impressions.size
-    #------------------------------------------------------
     @tag_show = Tag.new
     #↑postのshowページで新しくタグを作るためにnewでフォームを作成
   end

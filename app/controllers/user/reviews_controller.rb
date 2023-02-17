@@ -1,4 +1,5 @@
 class User::ReviewsController < ApplicationController
+  
   def new
     @post = Post.find(params[:post_id])
     # どの投稿にコメントするの？=>reviewのshowでidを渡した、new_review_path(post_id: @post.id)のidにコメントするで
