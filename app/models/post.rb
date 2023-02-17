@@ -7,8 +7,6 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  # is_impressionable counter_cache: true
-
   validates :shop_name, presence: true
   validates :shop_explanation, presence: true
 
@@ -32,20 +30,6 @@ class Post < ApplicationRecord
       self.tags << inspected_tag
       #↑どういう動きか調べている最中
     end
-
-    # current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-    # old_tags = current_tags - sent_tags
-    # new_tags = sent_tags - current_tags
-
-    # old_tags.each do |old|
-    # self.tags.delete Tag.find_by(tag_name: old)
-    # end
-
-    # new_tags.each do |new|
-    # new_post_tag = Tag.find_or_create_by(tag_name: new)
-    # #undefined method `name' for #<Tag id: nil, tag_name: "abura", created_at: nil, updated_at: nil>
-    # self.tags << new_post_tag
-  #   end
 
   end
 
