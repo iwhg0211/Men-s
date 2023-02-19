@@ -10,26 +10,26 @@
 </div>
 
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">レビュータイトル</p>
+  <p class="p-3 mb-2 bg-warning text-dark">レビュータイトル</p>
 </div>
 
 <div class="row justify-content-center">
-<%= f.text_field :review_title %>
+  <%= f.text_field :review_title %>
 </div>
 
 <div class="row justify-content-center">
-<p class="p-3 mb-2 bg-warning text-dark">レビューコメント</p>
+  <p class="p-3 mb-2 bg-warning text-dark">レビューコメント</p>
 </div>
 
 <div class="row justify-content-center">
-<%= f.text_area :shop_review %>
-<%= f.hidden_field :post_id, :value => @post.id %>
+  <%= f.text_area :shop_review %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
 </div>
 
 <div class="row justify-content-center">
-<%= f.submit 'レビュー投稿',class:"btn btn-primary" %>
-
-<% end %>
+  <%= f.submit 'レビュー投稿',class:"btn btn-primary" %>
+  
+  <% end %>
 </div>
 
   <script>

@@ -26,14 +26,6 @@
     <% else %>
     <% end %>
 
-    <%#ランキング機能は実装予定%>
-    <!--<p class="p-3 mb-2 bg-warning text-dark">PV数</p>-->
-    <!--<div class="p-3 mb-2 bg-dark text-white">-->
-    <!--  <p><%#= @post.impressionist_count %></p>-->
-      <%#.これでPVの数を表示 %>
-    <!--</div>-->
-
-
     <p class="p-3 mb-2 bg-warning text-dark">店の地図</p>
     <script type="text/javascript">
          function initMap() {
@@ -116,7 +108,6 @@
               <%= link_to review.review_title, post_review_path(post_id: review.id), class:'btn btn-warning' %></td><%# controllerにpostに紐付いたreviewをeach文で作る %>
           <td><%= review.rate %></td>
           <%# ↑レビューの星を画像表示するために記述したが、文字列が表示される %>
-          <!--<td><%#= review.is_released %></td>-->
         </tr>
         <% else %>
         <tr>

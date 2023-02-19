@@ -42,9 +42,7 @@ Rails.application.routes.draw do
     end
 
     get 'mypage' => 'users#mypage', as: 'mypage'
-    # 12/19にしてたミス→get 'users/mypage' => 'users#mypage', as: 'mypage'と最初にusers/にしていたためマイページに飛ばなかった
     patch 'mypage' => 'users#update_mypage', as: 'update_mypage'
-    # 12/21までpatch 'mypage' => 'users#update_mypage'をpatch 'mypage' => 'users#mypage'にしていたのでアクションがupdateできていなかった。
     get 'edit_mypage' => 'users#edit_mypage', as: 'edit_mypage'
     get 'ranking' => 'posts#ranking', as: 'ranking'
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
