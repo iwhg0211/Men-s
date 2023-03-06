@@ -2,6 +2,8 @@ class Admin::ReviewsController < ApplicationController
 
   def index
     @post = Post.find(params[:post_id])
+    #↑postにreviewでルーティングのネストがされている。rails routesでURI Pattern を確認すると、posts/:post_id/reviews/:idとなっている。(下の行に続く)
+    #(上の行の続き)なので、postのidをとりにいくときはfind(params[:post_id]),reviewのidをとりにいくときはfind(params[:id])と記述する
     @reviews = @post.reviews.page(params[:page]).per(10)
     #↑@postに紐づいたreviewを@postに格納。page(params[:page])でページネーション実装、per(10)で１ページに10件まで
   end
@@ -9,8 +11,6 @@ class Admin::ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @post = Post.find(params[:post_id])
-    #↑admin側はpostにreviewでルーティングのネストがされている。rails routesでURI Pattern を確認すると、posts/:post_id/reviews/:idとなっている。(下の行に続く)
-    #(上の行の続き)なので、postのidをとりにいくときはfind(params[:post_id]),reviewのidをとりにいくときはfind(params[:id])と記述する
   end
 
   def update

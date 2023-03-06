@@ -32,11 +32,6 @@
                 <%= link_to admin_tags_path, class:'navbar_brand' do %>
                 <button type="button" class="btn btn-warning rounded-circle">タグ一覧</button><% end %>
               </li>
-              <%#ランキング機能は追加予定%>
-              <!--<li>-->
-              <!--  <%#= link_to admin_ranking_path, class:'navbar_brand' do %>-->
-              <!--  <button type="button" class="btn btn-warning rounded-circle">ランキング一覧</button><%# end %>-->
-              <!--</li>-->
               <li>
                 <%= link_to destroy_admin_session_path, method: :delete, class:'navbar_brand' do %>
                 <button type="button" class="btn btn-warning rounded-circle">ログアウト</button><% end %>
@@ -55,12 +50,6 @@
                 <%= link_to new_post_path class:'mavbar_brand' do %>
                 <button type="button" class="btn btn-warning rounded-circle">新規投稿</button><% end %>
               </li>
-              <%#ランキング機能は追加予定%
-              <!--<li>-->
-              <!--  <%#= link_to ranking_path, class:'navbar_brand' do %>
-              <!--  <button type="button" class="btn btn-warning rounded-circle">ランキング一覧</button><%# end %>-->
-              <!--</li>-->
-              <!--<li>-->
                 <%= link_to destroy_user_session_path, method: :delete, class:'navbar_brand' do %>
                 <button type="button" class="btn btn-warning rounded-circle">ログアウト</button><% end %>
               </li>
@@ -88,6 +77,7 @@
       </nav>
     </headers>
         <%= yield %>
+        <!--共通レイアウト、どのページにおいても同じ形式で表示する-->
     <footer>
       <div class="row justify-content-center">
         <div class="p-3 mt-4 text-dark">
