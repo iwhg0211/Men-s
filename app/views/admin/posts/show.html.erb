@@ -11,7 +11,6 @@
         <th>投稿氏名</th>
         <th>公開設定</th>
         <th>公開・非公開設定</th>
-        <!--<th>PV数</th>-->
         <th>この投稿のレビュー</th>
       </tr>
     </thead>
@@ -28,7 +27,6 @@
             <%= f.label :is_released, "非公開" %>
             <%= f.submit '変更',class:'btn btn-primary' %>
             <% end %></td>
-        <!--<td><%#= @post.impressions_count %><%# これでPVの数を表示 %></td>-->
         <td><%= link_to 'レビューの一覧', admin_post_reviews_path(@post.id), class:'btn btn-primary' %></td>
       </tr>
     </tbody>

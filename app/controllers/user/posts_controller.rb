@@ -31,9 +31,8 @@ class User::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    #↓ここの記述はいまいち説明できない
     @tag_list = params[:post][:tag_name].split(',')
-    #post,tag_nameのparamsから取ったデータを「,」で分けて@tag_listに入れる
+    #↑post,tag_nameのparamsから取ったデータを「,」で分けて@tag_listに入れる
     if @post.save
       @post.save_tag(@tag_list)
       #上の@tag_listで入れたデータをsave_tag(post.rbに記述)に入れる
