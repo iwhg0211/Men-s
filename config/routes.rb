@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :new, :create, :edit, :update, :destroy]
     get 'tag' => 'tags#tag_index', as: 'tag_index'
     resources :tag_posts, only: [:update]
-    get 'ranking' => 'posts#ranking', as: 'ranking'
   end
 
 
@@ -44,7 +43,6 @@ Rails.application.routes.draw do
     get 'mypage' => 'users#mypage', as: 'mypage'
     patch 'mypage' => 'users#update_mypage', as: 'update_mypage'
     get 'edit_mypage' => 'users#edit_mypage', as: 'edit_mypage'
-    get 'ranking' => 'posts#ranking', as: 'ranking'
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     # ↑退会確認ページを表示するためのルーティング
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
